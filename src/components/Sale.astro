@@ -1,0 +1,92 @@
+---
+import { Image } from 'astro:assets';
+import saleImage from '../assets/hero/maple-fall.jpg';
+---
+
+<section id="sale" class="section sale">
+	<div class="section__inner sale__inner reveal">
+		<div class="sale__copy">
+			<p class="section__eyebrow">Fall Anniversary</p>
+			<h2>Celebrate 20 years with us</h2>
+			<p class="section__lead">
+				This fall we are offering a selection of our high-quality trees at a discount on orders of 
+				<strong>5 trees or more</strong>.
+			</p>
+			<p>
+				Shop our online store for containers ready for your landscape, the same trees we have been
+				growing with care since 2005.
+			</p>
+			<div class="sale__actions">
+				<a
+					class="btn btn--navy"
+					href="https://www.gardengatetrees.com/"
+					rel="noopener noreferrer">Shop on gardengatetrees.com</a
+				>
+				<a class="btn btn--outline" href="tel:5095472254">Call 509-547-2254</a>
+			</div>
+			<p class="sale__note">
+				Local homeowners are welcome to
+				<a href="https://www.gardengatetrees.com/" rel="noopener noreferrer">schedule a nursery visit</a
+				>.
+			</p>
+		</div>
+		<figure class="sale__figure">
+			<Image
+				src={saleImage}
+				alt="Maple trees in fall color along a nursery row"
+				widths={[600, 900, 1200]}
+				sizes="(max-width: 900px) 100vw, 45vw"
+				quality={80}
+				class="sale__img"
+			/>
+		</figure>
+	</div>
+</section>
+
+<style>
+	.sale {
+		padding-bottom: var(--space-2xl);
+	}
+
+	.sale__inner {
+		display: grid;
+		gap: var(--space-lg);
+		align-items: center;
+		padding: var(--space-lg);
+		background:
+			linear-gradient(135deg, rgba(240, 213, 106, 0.22), rgba(61, 107, 99, 0.12)),
+			var(--cream-soft);
+		border: 1px solid rgba(26, 43, 68, 0.08);
+		box-shadow: var(--shadow-soft);
+	}
+
+	@media (min-width: 900px) {
+		.sale__inner {
+			grid-template-columns: 1.05fr 0.95fr;
+			padding: var(--space-xl);
+			gap: var(--space-xl);
+		}
+	}
+
+	.sale__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin: var(--space-md) 0 var(--space-sm);
+	}
+
+	.sale__note {
+		font-size: 0.95rem;
+		color: var(--text-muted);
+	}
+
+	.sale__figure {
+		margin: 0;
+	}
+
+	.sale__img {
+		width: 100%;
+		aspect-ratio: 4 / 3;
+		object-fit: cover;
+	}
+</style>

@@ -1,0 +1,258 @@
+---
+import { Image } from 'astro:assets';
+import kidsRunning from '../assets/story/family-office.jpg';
+import kidsCart from '../assets/story/kids-golf-cart.jpg';
+import everettSandra from '../assets/story/everett-sandra-foreheads.jpg';
+import nurseryRows from '../assets/growing/purple-green-rows.jpg';
+---
+
+<section id="story" class="section story">
+	<div class="section__inner">
+		<div class="story__intro reveal">
+			<p class="section__eyebrow">Our Story</p>
+			<h2>From a dream on the road to rows that stretch for miles</h2>
+			<p class="section__lead">
+				Garden Gate Nursery began with Everett and Sandra, and a slogan that still greets every
+				visitor.
+			</p>
+		</div>
+
+		<div class="story__timeline">
+			<article class="story__beat reveal">
+				<p class="story__year">1985</p>
+				<div class="story__copy">
+					<h3>Kansas roots, Washington horizons</h3>
+					<p>
+						Everett and Sandra came from Kansas after years managing their family dairy farm through
+						hard financial times. In Washington they farmed hay, and kept dreaming of what might
+						grow next.
+					</p>
+				</div>
+			</article>
+
+			<article class="story__beat story__beat--photo reveal">
+				<p class="story__year">Early 2000s</p>
+				<div class="story__copy">
+					<h3>Named on a drive</h3>
+					<p>
+						Their son Chris remembers Everett and Sandra dreaming up a nursery while driving. They
+						landed on the name Garden Gate Nursery, and Everett shared the slogan with Sandra:
+						<em> “Meet you at the Garden Gate!”</em>
+					</p>
+				</div>
+				<figure class="story__figure">
+					<Image
+						src={everettSandra}
+						alt="Everett and Sandra walking hand in hand through the nursery"
+						widths={[480, 720, 960]}
+						sizes="(max-width: 800px) 100vw, 420px"
+						quality={80}
+						class="story__img"
+					/>
+					<figcaption>Everett &amp; Sandra</figcaption>
+				</figure>
+			</article>
+
+			<article class="story__beat reveal">
+				<p class="story__year">2005</p>
+				<div class="story__copy">
+					<h3>Three rows in the ground</h3>
+					<p>
+						They planted three rows of trees and began the long learning curve of growing high-quality
+						container trees in Eastern Washington: trial, error, and care, season after season.
+					</p>
+				</div>
+			</article>
+
+			<article class="story__beat reveal">
+				<p class="story__year">July 2006</p>
+				<div class="story__copy">
+					<h3>First order shipped</h3>
+					<p>
+						The nursery sold its first order, the start of serving landscapers, retailers, cities,
+						and homeowners across the Pacific Northwest.
+					</p>
+				</div>
+			</article>
+
+			<article class="story__beat story__beat--photo story__beat--photo-left reveal">
+				<p class="story__year">Today</p>
+				<div class="story__copy">
+					<h3>Over 70,000 trees</h3>
+					<p>
+						Garden Gate has grown into a Tri-Cities company known for container trees shipped
+						throughout the PNW and beyond: still family, still local, still glad to meet you at the
+						gate.
+					</p>
+				</div>
+				<figure class="story__figure">
+					<Image
+						src={nurseryRows}
+						alt="Long rows of container trees at Garden Gate Nursery"
+						widths={[480, 720, 960]}
+						sizes="(max-width: 800px) 100vw, 420px"
+						quality={80}
+						class="story__img"
+					/>
+					<figcaption>Growing over 70,000 trees</figcaption>
+				</figure>
+			</article>
+		</div>
+
+		<div class="story__moments reveal">
+			<figure class="story__moment">
+				<Image
+					src={kidsRunning}
+					alt="Children running down a path between blooming nursery trees"
+					widths={[400, 600, 800]}
+					sizes="(max-width: 700px) 100vw, 50vw"
+					quality={80}
+					class="story__img"
+				/>
+				<figcaption>Joy among the rows</figcaption>
+			</figure>
+			<figure class="story__moment">
+				<Image
+					src={kidsCart}
+					alt="Children smiling on a red golf cart among nursery tree rows"
+					widths={[400, 600, 800]}
+					sizes="(max-width: 700px) 100vw, 50vw"
+					quality={80}
+					class="story__img"
+				/>
+				<figcaption>Family days among the rows</figcaption>
+			</figure>
+		</div>
+	</div>
+</section>
+
+<style>
+	.story {
+		padding-top: var(--space-2xl);
+	}
+
+	.story__intro {
+		max-width: 40rem;
+		margin-bottom: var(--space-xl);
+	}
+
+	.story__timeline {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-lg);
+		position: relative;
+		padding-left: 0;
+	}
+
+	.story__timeline::before {
+		content: '';
+		position: absolute;
+		left: 0.35rem;
+		top: 0.35rem;
+		bottom: 0.35rem;
+		width: 2px;
+		background: linear-gradient(180deg, var(--sun), var(--hill-teal), var(--soil-light));
+		opacity: 0.55;
+	}
+
+	@media (min-width: 800px) {
+		.story__timeline::before {
+			left: 5.5rem;
+		}
+	}
+
+	.story__beat {
+		display: grid;
+		gap: var(--space-sm);
+		padding-left: 1.75rem;
+		position: relative;
+	}
+
+	.story__beat::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0.45rem;
+		width: 0.75rem;
+		height: 0.75rem;
+		border-radius: 50%;
+		background: var(--sun);
+		border: 2px solid var(--navy);
+		box-shadow: 0 0 0 3px rgba(240, 213, 106, 0.35);
+	}
+
+	@media (min-width: 800px) {
+		.story__beat {
+			grid-template-columns: 5rem 1fr;
+			padding-left: 0;
+			column-gap: var(--space-md);
+		}
+
+		.story__beat::before {
+			left: 5.2rem;
+		}
+
+		.story__beat--photo {
+			grid-template-columns: 5rem 1fr minmax(240px, 420px);
+			align-items: start;
+		}
+
+		.story__beat--photo-left .story__figure {
+			order: 2;
+		}
+
+		.story__beat--photo-left .story__copy {
+			order: 3;
+		}
+	}
+
+	.story__year {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: 1.05rem;
+		font-weight: 650;
+		color: var(--ray-orange);
+	}
+
+	.story__copy h3 {
+		margin-bottom: 0.4rem;
+	}
+
+	.story__copy em {
+		font-family: var(--font-display);
+		font-style: italic;
+		color: var(--hill-teal);
+	}
+
+	.story__figure,
+	.story__moment {
+		margin: 0;
+	}
+
+	.story__img {
+		width: 100%;
+		height: auto;
+		aspect-ratio: 4 / 5;
+		object-fit: cover;
+		box-shadow: var(--shadow-soft);
+	}
+
+	.story__figure figcaption,
+	.story__moment figcaption {
+		margin-top: 0.5rem;
+		font-size: 0.9rem;
+		color: var(--text-muted);
+	}
+
+	.story__moments {
+		display: grid;
+		gap: var(--space-md);
+		margin-top: var(--space-xl);
+	}
+
+	@media (min-width: 700px) {
+		.story__moments {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+</style>

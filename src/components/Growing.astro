@@ -1,0 +1,125 @@
+---
+import { Image } from 'astro:assets';
+import containers from '../assets/growing/container-irrigation.jpg';
+import rows from '../assets/growing/purple-green-rows.jpg';
+import blossoms from '../assets/growing/blossoms-closeup.jpg';
+---
+
+<section id="growing" class="section growing">
+	<div class="section__inner">
+		<div class="growing__layout">
+			<div class="growing__copy reveal">
+				<p class="section__eyebrow">How We Grow</p>
+				<h2>High-quality container trees, season after season</h2>
+				<p class="section__lead">
+					From bare root to delivery, every tree spends years in our care before it reaches your
+					landscape.
+				</p>
+				<p>
+					We bring in most of the trees we sell as two-year bare-root stock, plant them in containers
+					with a soilless bark mix, and keep growing them for one to seven years.
+				</p>
+				<p>
+					Countless hours go into irrigation management, pest control, pruning, transplanting, and
+					order fulfillment: the quiet work behind trees that thrive in the Pacific Northwest.
+				</p>
+				<p>
+					We deliver quickly across the PNW, and as a Tri-Cities company we are glad to serve local
+					businesses and homeowners. Over the years we have hosted open-to-the-public events and
+					welcome scheduled nursery visits.
+				</p>
+			</div>
+
+			<div class="growing__visuals reveal">
+				<figure class="growing__hero-shot">
+					<Image
+						src={rows}
+						alt="Purple and green container trees lining a nursery path"
+						widths={[600, 900, 1200]}
+						sizes="(max-width: 900px) 100vw, 50vw"
+						quality={80}
+						class="growing__img"
+					/>
+				</figure>
+				<div class="growing__pair">
+					<figure>
+						<Image
+							src={containers}
+							alt="Young trees in containers with drip irrigation lines"
+							widths={[400, 600]}
+							sizes="(max-width: 900px) 50vw, 25vw"
+							quality={80}
+							class="growing__img"
+						/>
+					</figure>
+					<figure>
+						<Image
+							src={blossoms}
+							alt="Close-up of white blossoms and pink buds on a nursery tree"
+							widths={[400, 600]}
+							sizes="(max-width: 900px) 50vw, 25vw"
+							quality={80}
+							class="growing__img"
+						/>
+					</figure>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.growing {
+		background:
+			linear-gradient(180deg, transparent, rgba(61, 107, 99, 0.06) 20%, rgba(61, 107, 99, 0.08) 80%, transparent);
+	}
+
+	.growing__layout {
+		display: grid;
+		gap: var(--space-lg);
+		align-items: center;
+	}
+
+	@media (min-width: 960px) {
+		.growing__layout {
+			grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+			gap: var(--space-xl);
+		}
+	}
+
+	.growing__copy p + p {
+		margin-top: var(--space-sm);
+	}
+
+	.growing__visuals {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-sm);
+	}
+
+	.growing__hero-shot,
+	.growing__pair figure {
+		margin: 0;
+	}
+
+	.growing__img {
+		width: 100%;
+		height: auto;
+		object-fit: cover;
+		box-shadow: var(--shadow-soft);
+	}
+
+	.growing__hero-shot .growing__img {
+		aspect-ratio: 4 / 3;
+	}
+
+	.growing__pair {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: var(--space-sm);
+	}
+
+	.growing__pair .growing__img {
+		aspect-ratio: 1;
+	}
+</style>

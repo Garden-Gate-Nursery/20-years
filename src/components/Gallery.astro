@@ -1,0 +1,201 @@
+---
+import { Image } from 'astro:assets';
+import { galleryItems } from '../data/gallery';
+---
+
+<section id="gallery" class="section gallery">
+	<div class="section__inner">
+		<div class="gallery__intro reveal">
+			<p class="section__eyebrow">People &amp; Place</p>
+			<h2>Pictures from over the years</h2>
+			<p class="section__lead">
+				Family, friends, and the trees that fill our fields: a look at life at Garden Gate.
+			</p>
+		</div>
+
+		<div class="gallery__grid">
+			{
+				galleryItems.map((item, index) => (
+					<button
+						type="button"
+						class="gallery__item reveal"
+						data-gallery-open
+						aria-label={`View photo: ${item.alt}`}
+						style={`transition-delay: ${Math.min(index * 40, 400)}ms`}
+					>
+						<Image
+							src={item.src}
+							alt={item.alt}
+							widths={[320, 480, 720]}
+							sizes="(max-width: 600px) 50vw, (max-width: 1000px) 33vw, 25vw"
+							quality={75}
+							class="gallery__img"
+							loading="lazy"
+						/>
+						{item.caption && <span class="gallery__caption">{item.caption}</span>}
+					</button>
+				))
+			}
+		</div>
+	</div>
+
+	<dialog class="gallery__dialog" id="gallery-dialog" aria-label="Photo viewer">
+		<form method="dialog" class="gallery__dialog-bar">
+			<button type="submit" class="gallery__close" aria-label="Close">Close</button>
+		</form>
+		<img class="gallery__dialog-img" id="gallery-dialog-img" alt="" />
+		<p class="gallery__dialog-caption" id="gallery-dialog-caption"></p>
+	</dialog>
+</section>
+
+<script>
+	const items = Array.from(document.querySelectorAll('[data-gallery-open]')) as HTMLButtonElement[];
+	const dialog = document.getElementById('gallery-dialog') as HTMLDialogElement | null;
+	const dialogImg = document.getElementById('gallery-dialog-img') as HTMLImageElement | null;
+	const dialogCaption = document.getElementById('gallery-dialog-caption');
+
+	if (dialog && dialogImg && dialogCaption) {
+		items.forEach((btn) => {
+			btn.addEventListener('click', () => {
+				const img = btn.querySelector('img');
+				const caption = btn.querySelector('.gallery__caption');
+				if (!img) return;
+				dialogImg.src = img.currentSrc || img.src;
+				dialogImg.alt = img.alt;
+				dialogCaption.textContent = caption?.textContent ?? img.alt;
+				dialog.showModal();
+			});
+		});
+
+		dialog.addEventListener('click', (event) => {
+			if (event.target === dialog) dialog.close();
+		});
+	}
+</script>
+
+<style>
+	.gallery__intro {
+		max-width: 36rem;
+		margin-bottom: var(--space-lg);
+	}
+
+	.gallery__grid {
+		columns: 2;
+		column-gap: 0.75rem;
+	}
+
+	@media (min-width: 700px) {
+		.gallery__grid {
+			columns: 3;
+			column-gap: 1rem;
+		}
+	}
+
+	@media (min-width: 1100px) {
+		.gallery__grid {
+			columns: 4;
+		}
+	}
+
+	.gallery__item {
+		display: block;
+		width: 100%;
+		margin: 0 0 0.75rem;
+		padding: 0;
+		border: none;
+		background: transparent;
+		cursor: zoom-in;
+		break-inside: avoid;
+		position: relative;
+		overflow: hidden;
+		text-align: left;
+	}
+
+	@media (min-width: 700px) {
+		.gallery__item {
+			margin-bottom: 1rem;
+		}
+	}
+
+	.gallery__img {
+		width: 100%;
+		height: auto;
+		transition: transform 0.5s ease;
+	}
+
+	.gallery__item:hover .gallery__img,
+	.gallery__item:focus-visible .gallery__img {
+		transform: scale(1.03);
+	}
+
+	.gallery__caption {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		padding: 1.5rem 0.75rem 0.65rem;
+		font-size: 0.85rem;
+		font-weight: 600;
+		color: var(--cream);
+		background: linear-gradient(transparent, rgba(15, 26, 42, 0.75));
+		pointer-events: none;
+	}
+
+	.gallery__dialog {
+		border: none;
+		padding: 0;
+		max-width: min(92vw, 56rem);
+		background: var(--navy-deep);
+		color: var(--cream);
+		box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+	}
+
+	.gallery__dialog::backdrop {
+		background: rgba(15, 26, 42, 0.72);
+	}
+
+	.gallery__dialog-bar {
+		display: flex;
+		justify-content: flex-end;
+		padding: 0.5rem 0.75rem;
+	}
+
+	.gallery__close {
+		font-family: var(--font-body);
+		font-size: 0.9rem;
+		font-weight: 600;
+		color: var(--cream);
+		background: transparent;
+		border: 1px solid rgba(243, 236, 216, 0.35);
+		padding: 0.4rem 0.75rem;
+		cursor: pointer;
+	}
+
+	.gallery__close:hover {
+		border-color: var(--sun);
+		color: var(--sun);
+	}
+
+	.gallery__dialog-img {
+		width: 100%;
+		max-height: 75vh;
+		object-fit: contain;
+		background: #000;
+	}
+
+	.gallery__dialog-caption {
+		margin: 0;
+		padding: 0.85rem 1rem 1.1rem;
+		font-size: 0.95rem;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.gallery__img {
+			transition: none;
+		}
+
+		.gallery__item:hover .gallery__img {
+			transform: none;
+		}
+	}
+</style>

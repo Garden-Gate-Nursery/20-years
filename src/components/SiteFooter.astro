@@ -1,0 +1,101 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.webp';
+
+const links = [
+	{ href: 'https://www.gardengatetrees.com/', label: 'Home' },
+	{ href: 'https://www.gardengatetrees.com/', label: 'Tree Catalog' },
+	{ href: 'https://www.gardengatetrees.com/', label: 'About' },
+	{ href: 'https://www.gardengatetrees.com/', label: 'Contact' },
+];
+---
+
+<footer class="footer">
+	<div class="footer__inner">
+		<div class="footer__brand">
+			<Image src={logo} alt="Garden Gate Nursery" width={96} densities={[1, 2]} quality={85} class="footer__logo" />
+			<p class="footer__slogan"><em>Meet you at the Garden Gate!</em></p>
+			<p class="footer__locales">Boring, Oregon · Tri-Cities, Washington</p>
+			<p class="footer__phone">
+				<a href="tel:5095472254">509-547-2254</a>
+			</p>
+		</div>
+		<nav class="footer__nav" aria-label="Garden Gate main site">
+			{
+				links.map((link) => (
+					<a href={link.href} rel="noopener noreferrer">
+						{link.label}
+					</a>
+				))
+			}
+		</nav>
+	</div>
+	<p class="footer__copy">© {new Date().getFullYear()} Garden Gate Nursery LLC. All rights reserved.</p>
+</footer>
+
+<style>
+	.footer {
+		background: var(--navy-deep);
+		color: rgba(243, 236, 216, 0.85);
+		padding: var(--space-xl) var(--space-md) var(--space-lg);
+	}
+
+	.footer__inner {
+		max-width: var(--max-width);
+		margin: 0 auto;
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-lg);
+		justify-content: space-between;
+		align-items: flex-start;
+	}
+
+	.footer__logo {
+		width: 5.5rem;
+		height: auto;
+		margin-bottom: var(--space-sm);
+	}
+
+	.footer__slogan {
+		margin: 0 0 0.35rem;
+		font-size: 1.15rem;
+		color: var(--cream);
+	}
+
+	.footer__slogan em {
+		font-family: var(--font-display);
+		font-style: italic;
+		color: var(--sun);
+	}
+
+	.footer__locales,
+	.footer__phone {
+		margin: 0;
+		font-size: 0.95rem;
+	}
+
+	.footer a {
+		color: var(--cream);
+		text-decoration: none;
+	}
+
+	.footer a:hover {
+		color: var(--sun);
+	}
+
+	.footer__nav {
+		display: flex;
+		flex-direction: column;
+		gap: 0.65rem;
+		font-weight: 600;
+	}
+
+	.footer__copy {
+		max-width: var(--max-width);
+		margin: var(--space-lg) auto 0;
+		padding-top: var(--space-md);
+		border-top: 1px solid rgba(243, 236, 216, 0.15);
+		font-size: 0.85rem;
+		color: rgba(243, 236, 216, 0.55);
+	}
+</style>
