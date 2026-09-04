@@ -1,0 +1,45 @@
+<section id="watch" class="section watch">
+	<div class="section__inner">
+		<div class="watch__intro reveal">
+			<p class="section__eyebrow">Watch</p>
+			<h2>A look at Garden Gate</h2>
+			<p class="section__lead">
+				See the nursery, the trees, and the people behind twenty years of growing.
+			</p>
+		</div>
+
+		<div class="watch__player reveal">
+			<iframe
+				src="https://www.youtube-nocookie.com/embed/yZUbiVaKD38"
+				title="Garden Gate Nursery video"
+				loading="lazy"
+				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+				allowfullscreen
+				referrerpolicy="strict-origin-when-cross-origin"
+			></iframe>
+		</div>
+	</div>
+</section>
+
+<style>
+	.watch__intro {
+		max-width: 36rem;
+		margin-bottom: var(--space-lg);
+	}
+
+	.watch__player {
+		position: relative;
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		overflow: hidden;
+		background: var(--navy-deep);
+	}
+
+	.watch__player iframe {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		border: 0;
+	}
+</style>
