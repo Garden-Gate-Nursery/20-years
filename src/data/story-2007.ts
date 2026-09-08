@@ -221,4 +221,4 @@ export const story2007Photos: GalleryItem[] = [
 ];
 
 /** Branded truck photo — strongest “family business” signal */
-export const story2007Featured = story2007Photos[1];
+export const story2007Featured = story2007Photos[4];
