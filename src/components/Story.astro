@@ -5,6 +5,7 @@ import kidsCart from '../assets/story/kids-golf-cart.jpg';
 import everettSandra from '../assets/story/everett-sandra-foreheads.jpg';
 import nurseryRows from '../assets/growing/purple-green-rows.jpg';
 import { story2006Featured, story2006Photos } from '../data/story-2006';
+import { story2007Featured, story2007Photos } from '../data/story-2007';
 ---
 
 <section id="story" class="section story">
@@ -99,6 +100,39 @@ import { story2006Featured, story2006Photos } from '../data/story-2006';
 			</article>
 
 			<article class="story__beat story__beat--photo story__beat--photo-left reveal">
+				<p class="story__year">2007</p>
+				<div class="story__copy">
+					<h3>A family business</h3>
+					<p>
+						Grandkids, siblings, and grandparents all pitch in—planting, shipping, and growing
+						together, with lot's of dining room table meetings.
+					</p>
+				</div>
+				<figure class="story__figure">
+					<Image
+						src={story2007Featured.src}
+						alt={story2007Featured.alt}
+						widths={[480, 720, 960]}
+						sizes="(max-width: 800px) 100vw, 420px"
+						quality={80}
+						class="story__img"
+					/>
+					<figcaption>
+						{story2007Featured.caption}
+						<button
+							type="button"
+							class="story__more-photos"
+							data-story-2007-open
+							aria-haspopup="dialog"
+							aria-controls="story-2007-dialog"
+						>
+							View more photos
+						</button>
+					</figcaption>
+				</figure>
+			</article>
+
+			<article class="story__beat story__beat--photo reveal">
 				<p class="story__year">Today</p>
 				<div class="story__copy">
 					<h3>Over 70,000 trees</h3>
@@ -164,6 +198,32 @@ import { story2006Featured, story2006Photos } from '../data/story-2006';
 							quality={80}
 							class="story__dialog-img"
 							loading="lazy"
+							style={item.objectPosition ? `object-position: ${item.objectPosition}` : undefined}
+						/>
+						{item.caption && <figcaption>{item.caption}</figcaption>}
+					</figure>
+				))
+			}
+		</div>
+	</dialog>
+
+	<dialog class="story__dialog" id="story-2007-dialog" aria-label="2007 nursery photos">
+		<form method="dialog" class="story__dialog-bar">
+			<button type="submit" class="story__dialog-close" aria-label="Close">Close</button>
+		</form>
+		<div class="story__dialog-grid">
+			{
+				story2007Photos.map((item) => (
+					<figure class="story__dialog-item">
+						<Image
+							src={item.src}
+							alt={item.alt}
+							widths={[480, 720, 960]}
+							sizes="(max-width: 700px) 90vw, 280px"
+							quality={80}
+							class="story__dialog-img"
+							loading="lazy"
+							style={item.objectPosition ? `object-position: ${item.objectPosition}` : undefined}
 						/>
 						{item.caption && <figcaption>{item.caption}</figcaption>}
 					</figure>
@@ -174,10 +234,15 @@ import { story2006Featured, story2006Photos } from '../data/story-2006';
 </section>
 
 <script>
-	const openBtn = document.querySelector('[data-story-2006-open]') as HTMLButtonElement | null;
-	const dialog = document.getElementById('story-2006-dialog') as HTMLDialogElement | null;
+	const storyDialogs = [
+		{ open: '[data-story-2006-open]', dialog: 'story-2006-dialog' },
+		{ open: '[data-story-2007-open]', dialog: 'story-2007-dialog' },
+	] as const;
 
-	if (openBtn && dialog) {
+	for (const { open, dialog: dialogId } of storyDialogs) {
+		const openBtn = document.querySelector(open) as HTMLButtonElement | null;
+		const dialog = document.getElementById(dialogId) as HTMLDialogElement | null;
+		if (!openBtn || !dialog) continue;
 		openBtn.addEventListener('click', () => dialog.showModal());
 		dialog.addEventListener('click', (event) => {
 			if (event.target === dialog) dialog.close();
