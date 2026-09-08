@@ -7,6 +7,7 @@ import nurseryRows from '../assets/growing/purple-green-rows.jpg';
 import { story2006Featured, story2006Photos } from '../data/story-2006';
 import { story2007Featured, story2007Photos } from '../data/story-2007';
 import { story2008Featured, story2008Photos } from '../data/story-2008';
+import { story2011Featured, story2011Photos } from '../data/story-2011';
 ---
 
 <section id="story" class="section story">
@@ -167,6 +168,39 @@ import { story2008Featured, story2008Photos } from '../data/story-2008';
 			</article>
 
 			<article class="story__beat story__beat--photo story__beat--photo-left reveal">
+				<p class="story__year">2011</p>
+				<div class="story__copy">
+					<h3>Open to the public</h3>
+					<p>
+						Garden Gate hosts our first open to the public week, inviting Tri-Cities WA customers to
+						tour the nursery and pick out large trees.
+					</p>
+				</div>
+				<figure class="story__figure">
+					<Image
+						src={story2011Featured.src}
+						alt={story2011Featured.alt}
+						widths={[480, 720, 960]}
+						sizes="(max-width: 800px) 100vw, 420px"
+						quality={80}
+						class="story__img"
+					/>
+					<figcaption>
+						{story2011Featured.caption}
+						<button
+							type="button"
+							class="story__more-photos"
+							data-story-2011-open
+							aria-haspopup="dialog"
+							aria-controls="story-2011-dialog"
+						>
+							View more photos
+						</button>
+					</figcaption>
+				</figure>
+			</article>
+
+			<article class="story__beat story__beat--photo reveal">
 				<p class="story__year">Today</p>
 				<div class="story__copy">
 					<h3>Over 70,000 trees</h3>
@@ -290,6 +324,31 @@ import { story2008Featured, story2008Photos } from '../data/story-2008';
 			}
 		</div>
 	</dialog>
+
+	<dialog class="story__dialog" id="story-2011-dialog" aria-label="2011 nursery photos">
+		<form method="dialog" class="story__dialog-bar">
+			<button type="submit" class="story__dialog-close" aria-label="Close">Close</button>
+		</form>
+		<div class="story__dialog-grid">
+			{
+				story2011Photos.map((item) => (
+					<figure class="story__dialog-item">
+						<Image
+							src={item.src}
+							alt={item.alt}
+							widths={[480, 720, 960]}
+							sizes="(max-width: 700px) 90vw, 280px"
+							quality={80}
+							class="story__dialog-img"
+							loading="lazy"
+							style={item.objectPosition ? `object-position: ${item.objectPosition}` : undefined}
+						/>
+						{item.caption && <figcaption>{item.caption}</figcaption>}
+					</figure>
+				))
+			}
+		</div>
+	</dialog>
 </section>
 
 <script>
@@ -297,6 +356,7 @@ import { story2008Featured, story2008Photos } from '../data/story-2008';
 		{ open: '[data-story-2006-open]', dialog: 'story-2006-dialog' },
 		{ open: '[data-story-2007-open]', dialog: 'story-2007-dialog' },
 		{ open: '[data-story-2008-open]', dialog: 'story-2008-dialog' },
+		{ open: '[data-story-2011-open]', dialog: 'story-2011-dialog' },
 	] as const;
 
 	for (const { open, dialog: dialogId } of storyDialogs) {
