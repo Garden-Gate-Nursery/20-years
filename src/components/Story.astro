@@ -1,14 +1,14 @@
 ---
 import { Image } from 'astro:assets';
-import kidsRunning from '../assets/story/family-office.jpg';
 import kidsCart from '../assets/story/kids-golf-cart.jpg';
+import fallGardenGate from '../assets/story/fall-garden-gate.jpg';
 import everettSandra from '../assets/story/everett-sandra-foreheads.jpg';
-import nurseryRows from '../assets/growing/purple-green-rows.jpg';
 import { story2006Featured, story2006Photos } from '../data/story-2006';
 import { story2007Featured, story2007Photos } from '../data/story-2007';
 import { story2008Featured, story2008Photos } from '../data/story-2008';
 import { story2011Featured, story2011Photos } from '../data/story-2011';
 import { story2014Featured, story2014Photos } from '../data/story-2014';
+import { storyTodayFeatured, storyTodayPhotos } from '../data/story-today';
 ---
 
 <section id="story" class="section story">
@@ -48,11 +48,12 @@ import { story2014Featured, story2014Photos } from '../data/story-2014';
 				<figure class="story__figure">
 					<Image
 						src={everettSandra}
-						alt="Everett and Sandra walking hand in hand through the nursery"
+						alt="Everett and Sandra holding hands and smiling at each other in the nursery"
 						widths={[480, 720, 960]}
 						sizes="(max-width: 800px) 100vw, 420px"
 						quality={80}
 						class="story__img"
+						style="object-position: top"
 					/>
 					<figcaption>Everett &amp; Sandra</figcaption>
 				</figure>
@@ -247,14 +248,25 @@ import { story2014Featured, story2014Photos } from '../data/story-2014';
 				</div>
 				<figure class="story__figure">
 					<Image
-						src={nurseryRows}
-						alt="Long rows of container trees at Garden Gate Nursery"
+						src={storyTodayFeatured.src}
+						alt={storyTodayFeatured.alt}
 						widths={[480, 720, 960]}
 						sizes="(max-width: 800px) 100vw, 420px"
 						quality={80}
 						class="story__img"
 					/>
-					<figcaption>Growing over 70,000 trees</figcaption>
+					<figcaption>
+						{storyTodayFeatured.caption}
+						<button
+							type="button"
+							class="story__more-photos"
+							data-story-today-open
+							aria-haspopup="dialog"
+							aria-controls="story-today-dialog"
+						>
+							View more photos
+						</button>
+					</figcaption>
 				</figure>
 			</article>
 		</div>
@@ -262,14 +274,14 @@ import { story2014Featured, story2014Photos } from '../data/story-2014';
 		<div class="story__moments reveal">
 			<figure class="story__moment">
 				<Image
-					src={kidsRunning}
-					alt="Children running down a path between blooming nursery trees"
+					src={fallGardenGate}
+					alt="Rows of maple trees with red and orange autumn leaves at Garden Gate Nursery"
 					widths={[400, 600, 800]}
 					sizes="(max-width: 700px) 100vw, 50vw"
 					quality={80}
 					class="story__img"
 				/>
-				<figcaption>Joy among the rows</figcaption>
+				<figcaption>Fall at Garden Gate</figcaption>
 			</figure>
 			<figure class="story__moment">
 				<Image
@@ -280,7 +292,7 @@ import { story2014Featured, story2014Photos } from '../data/story-2014';
 					quality={80}
 					class="story__img"
 				/>
-				<figcaption>Family days among the rows</figcaption>
+				<figcaption>Rachel and her crew</figcaption>
 			</figure>
 		</div>
 	</div>
@@ -303,7 +315,6 @@ import { story2014Featured, story2014Photos } from '../data/story-2014';
 							loading="lazy"
 							style={item.objectPosition ? `object-position: ${item.objectPosition}` : undefined}
 						/>
-						{item.caption && <figcaption>{item.caption}</figcaption>}
 					</figure>
 				))
 			}
@@ -328,7 +339,6 @@ import { story2014Featured, story2014Photos } from '../data/story-2014';
 							loading="lazy"
 							style={item.objectPosition ? `object-position: ${item.objectPosition}` : undefined}
 						/>
-						{item.caption && <figcaption>{item.caption}</figcaption>}
 					</figure>
 				))
 			}
@@ -353,7 +363,6 @@ import { story2014Featured, story2014Photos } from '../data/story-2014';
 							loading="lazy"
 							style={item.objectPosition ? `object-position: ${item.objectPosition}` : undefined}
 						/>
-						{item.caption && <figcaption>{item.caption}</figcaption>}
 					</figure>
 				))
 			}
@@ -378,7 +387,6 @@ import { story2014Featured, story2014Photos } from '../data/story-2014';
 							loading="lazy"
 							style={item.objectPosition ? `object-position: ${item.objectPosition}` : undefined}
 						/>
-						{item.caption && <figcaption>{item.caption}</figcaption>}
 					</figure>
 				))
 			}
@@ -403,7 +411,30 @@ import { story2014Featured, story2014Photos } from '../data/story-2014';
 							loading="lazy"
 							style={item.objectPosition ? `object-position: ${item.objectPosition}` : undefined}
 						/>
-						{item.caption && <figcaption>{item.caption}</figcaption>}
+					</figure>
+				))
+			}
+		</div>
+	</dialog>
+
+	<dialog class="story__dialog" id="story-today-dialog" aria-label="Today nursery photos">
+		<form method="dialog" class="story__dialog-bar">
+			<button type="submit" class="story__dialog-close" aria-label="Close">Close</button>
+		</form>
+		<div class="story__dialog-grid">
+			{
+				storyTodayPhotos.map((item) => (
+					<figure class="story__dialog-item">
+						<Image
+							src={item.src}
+							alt={item.alt}
+							widths={[480, 720, 960]}
+							sizes="(max-width: 700px) 90vw, 280px"
+							quality={80}
+							class="story__dialog-img"
+							loading="lazy"
+							style={item.objectPosition ? `object-position: ${item.objectPosition}` : undefined}
+						/>
 					</figure>
 				))
 			}
@@ -418,6 +449,7 @@ import { story2014Featured, story2014Photos } from '../data/story-2014';
 		{ open: '[data-story-2008-open]', dialog: 'story-2008-dialog' },
 		{ open: '[data-story-2011-open]', dialog: 'story-2011-dialog' },
 		{ open: '[data-story-2014-open]', dialog: 'story-2014-dialog' },
+		{ open: '[data-story-today-open]', dialog: 'story-today-dialog' },
 	] as const;
 
 	for (const { open, dialog: dialogId } of storyDialogs) {
@@ -659,9 +691,4 @@ import { story2014Featured, story2014Photos } from '../data/story-2014';
 		display: block;
 	}
 
-	.story__dialog-item figcaption {
-		margin-top: 0.4rem;
-		font-size: 0.85rem;
-		color: rgba(243, 236, 216, 0.85);
-	}
 </style>

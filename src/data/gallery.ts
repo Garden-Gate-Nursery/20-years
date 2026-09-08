@@ -36,6 +36,8 @@ import sta0885 from '../assets/gallery/sta-0885.jpg';
 import sta0893 from '../assets/gallery/sta-0893.jpg';
 import sta0908 from '../assets/gallery/sta-0908.jpg';
 import tulipLeaf from '../assets/gallery/tulip-leaf.jpg';
+import family2007Tractor from '../assets/story/2007-family-17.jpg';
+import family2007Bucket from '../assets/story/2007-family-22.jpg';
 
 export const galleryItems: GalleryItem[] = [
 	{ src: nurseryFall, alt: 'Wide view of container tree rows glowing with fall color' },
@@ -123,6 +125,18 @@ export const galleryItems: GalleryItem[] = [
 		src: sta0752,
 		alt: 'Everett with children posing on a red Farmall tractor',
 		caption: 'On the Farmall',
+	},
+	{
+		src: family2007Tractor,
+		alt: 'Everett driving a blue tractor with four children waving from the raised loader bucket',
+		caption: 'Grandkids on the tractor',
+		objectPosition: 'top',
+	},
+	{
+		src: family2007Bucket,
+		alt: 'Two girls smiling from the front loader of a blue New Holland tractor among nursery trees',
+		caption: 'Kids in the tractor bucket',
+		objectPosition: 'top',
 	},
 	{ src: sta0885, alt: 'Close-up of white spring blossoms and new leaves' },
 	{

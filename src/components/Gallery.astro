@@ -32,7 +32,6 @@ import { galleryItems } from '../data/gallery';
 							class="gallery__img"
 							loading="lazy"
 						/>
-						{item.caption && <span class="gallery__caption">{item.caption}</span>}
 					</button>
 				))
 			}
@@ -44,7 +43,6 @@ import { galleryItems } from '../data/gallery';
 			<button type="submit" class="gallery__close" aria-label="Close">Close</button>
 		</form>
 		<img class="gallery__dialog-img" id="gallery-dialog-img" alt="" />
-		<p class="gallery__dialog-caption" id="gallery-dialog-caption"></p>
 	</dialog>
 </section>
 
@@ -52,17 +50,14 @@ import { galleryItems } from '../data/gallery';
 	const items = Array.from(document.querySelectorAll('[data-gallery-open]')) as HTMLButtonElement[];
 	const dialog = document.getElementById('gallery-dialog') as HTMLDialogElement | null;
 	const dialogImg = document.getElementById('gallery-dialog-img') as HTMLImageElement | null;
-	const dialogCaption = document.getElementById('gallery-dialog-caption');
 
-	if (dialog && dialogImg && dialogCaption) {
+	if (dialog && dialogImg) {
 		items.forEach((btn) => {
 			btn.addEventListener('click', () => {
 				const img = btn.querySelector('img');
-				const caption = btn.querySelector('.gallery__caption');
 				if (!img) return;
 				dialogImg.src = img.currentSrc || img.src;
 				dialogImg.alt = img.alt;
-				dialogCaption.textContent = caption?.textContent ?? img.alt;
 				dialog.showModal();
 			});
 		});
@@ -128,19 +123,6 @@ import { galleryItems } from '../data/gallery';
 		transform: scale(1.03);
 	}
 
-	.gallery__caption {
-		position: absolute;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		padding: 1.5rem 0.75rem 0.65rem;
-		font-size: 0.85rem;
-		font-weight: 600;
-		color: var(--cream);
-		background: linear-gradient(transparent, rgba(15, 26, 42, 0.75));
-		pointer-events: none;
-	}
-
 	.gallery__dialog {
 		border: none;
 		padding: 0;
@@ -181,12 +163,6 @@ import { galleryItems } from '../data/gallery';
 		max-height: 75vh;
 		object-fit: contain;
 		background: #000;
-	}
-
-	.gallery__dialog-caption {
-		margin: 0;
-		padding: 0.85rem 1rem 1.1rem;
-		font-size: 0.95rem;
 	}
 
 	@media (prefers-reduced-motion: reduce) {
