@@ -4,6 +4,7 @@ import kidsRunning from '../assets/story/family-office.jpg';
 import kidsCart from '../assets/story/kids-golf-cart.jpg';
 import everettSandra from '../assets/story/everett-sandra-foreheads.jpg';
 import nurseryRows from '../assets/growing/purple-green-rows.jpg';
+import { story2006Featured, story2006Photos } from '../data/story-2006';
 ---
 
 <section id="story" class="section story">
@@ -64,15 +65,37 @@ import nurseryRows from '../assets/growing/purple-green-rows.jpg';
 				</div>
 			</article>
 
-			<article class="story__beat reveal">
+			<article class="story__beat story__beat--photo reveal">
 				<p class="story__year">July 2006</p>
 				<div class="story__copy">
 					<h3>First order shipped</h3>
 					<p>
 						The nursery sold its first order, the start of serving landscapers, retailers, cities,
-						and homeowners across the Pacific Northwest.
+						and homeowners across the Pacific Northwest. We also plant 3 acres of pot-in-pot container trees. The whole family pitches in.
 					</p>
 				</div>
+				<figure class="story__figure">
+					<Image
+						src={story2006Featured.src}
+						alt={story2006Featured.alt}
+						widths={[480, 720, 960]}
+						sizes="(max-width: 800px) 100vw, 420px"
+						quality={80}
+						class="story__img"
+					/>
+					<figcaption>
+						{story2006Featured.caption}
+						<button
+							type="button"
+							class="story__more-photos"
+							data-story-2006-open
+							aria-haspopup="dialog"
+							aria-controls="story-2006-dialog"
+						>
+							View more photos
+						</button>
+					</figcaption>
+				</figure>
 			</article>
 
 			<article class="story__beat story__beat--photo story__beat--photo-left reveal">
@@ -124,7 +147,43 @@ import nurseryRows from '../assets/growing/purple-green-rows.jpg';
 			</figure>
 		</div>
 	</div>
+
+	<dialog class="story__dialog" id="story-2006-dialog" aria-label="2006 nursery photos">
+		<form method="dialog" class="story__dialog-bar">
+			<button type="submit" class="story__dialog-close" aria-label="Close">Close</button>
+		</form>
+		<div class="story__dialog-grid">
+			{
+				story2006Photos.map((item) => (
+					<figure class="story__dialog-item">
+						<Image
+							src={item.src}
+							alt={item.alt}
+							widths={[480, 720, 960]}
+							sizes="(max-width: 700px) 90vw, 280px"
+							quality={80}
+							class="story__dialog-img"
+							loading="lazy"
+						/>
+						{item.caption && <figcaption>{item.caption}</figcaption>}
+					</figure>
+				))
+			}
+		</div>
+	</dialog>
 </section>
+
+<script>
+	const openBtn = document.querySelector('[data-story-2006-open]') as HTMLButtonElement | null;
+	const dialog = document.getElementById('story-2006-dialog') as HTMLDialogElement | null;
+
+	if (openBtn && dialog) {
+		openBtn.addEventListener('click', () => dialog.showModal());
+		dialog.addEventListener('click', (event) => {
+			if (event.target === dialog) dialog.close();
+		});
+	}
+</script>
 
 <style>
 	.story {
@@ -244,6 +303,31 @@ import nurseryRows from '../assets/growing/purple-green-rows.jpg';
 		color: var(--text-muted);
 	}
 
+	.story__figure figcaption {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.45rem;
+	}
+
+	.story__more-photos {
+		font-family: var(--font-body);
+		font-size: 0.9rem;
+		font-weight: 600;
+		color: var(--hill-teal);
+		background: transparent;
+		border: none;
+		padding: 0;
+		cursor: pointer;
+		text-decoration: underline;
+		text-underline-offset: 0.15em;
+	}
+
+	.story__more-photos:hover,
+	.story__more-photos:focus-visible {
+		color: var(--navy);
+	}
+
 	.story__moments {
 		display: grid;
 		gap: var(--space-md);
@@ -254,5 +338,84 @@ import nurseryRows from '../assets/growing/purple-green-rows.jpg';
 		.story__moments {
 			grid-template-columns: 1fr 1fr;
 		}
+	}
+
+	.story__dialog {
+		border: none;
+		padding: 0;
+		max-width: min(94vw, 56rem);
+		max-height: min(90vh, 48rem);
+		background: var(--navy-deep);
+		color: var(--cream);
+		box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+	}
+
+	.story__dialog::backdrop {
+		background: rgba(15, 26, 42, 0.72);
+	}
+
+	.story__dialog-bar {
+		display: flex;
+		justify-content: flex-end;
+		padding: 0.5rem 0.75rem;
+		position: sticky;
+		top: 0;
+		background: var(--navy-deep);
+		z-index: 1;
+	}
+
+	.story__dialog-close {
+		font-family: var(--font-body);
+		font-size: 0.9rem;
+		font-weight: 600;
+		color: var(--cream);
+		background: transparent;
+		border: 1px solid rgba(243, 236, 216, 0.35);
+		padding: 0.4rem 0.75rem;
+		cursor: pointer;
+	}
+
+	.story__dialog-close:hover {
+		border-color: var(--sun);
+		color: var(--sun);
+	}
+
+	.story__dialog-grid {
+		display: grid;
+		gap: 0.75rem;
+		padding: 0 0.75rem 1rem;
+		grid-template-columns: 1fr;
+		overflow: auto;
+		max-height: calc(min(90vh, 48rem) - 3rem);
+	}
+
+	@media (min-width: 600px) {
+		.story__dialog-grid {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	@media (min-width: 900px) {
+		.story__dialog-grid {
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+	}
+
+	.story__dialog-item {
+		margin: 0;
+	}
+
+	.story__dialog-img {
+		width: 100%;
+		height: auto;
+		aspect-ratio: 4 / 3;
+		object-fit: cover;
+		display: block;
+	}
+
+	.story__dialog-item figcaption {
+		margin-top: 0.4rem;
+		font-size: 0.85rem;
+		color: rgba(243, 236, 216, 0.85);
 	}
 </style>

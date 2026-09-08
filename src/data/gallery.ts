@@ -115,11 +115,6 @@ export const galleryItems: GalleryItem[] = [
 		caption: 'Everett and Sandra',
 	},
 	{
-		src: chrisSandra,
-		alt: 'Everett and Sandra sharing a laugh among spring-green trees',
-		caption: 'Side by side',
-	},
-	{
 		src: familyCartRide,
 		alt: 'Everett at his desk in the nursery office',
 		caption: 'In the office',
