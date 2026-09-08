@@ -8,6 +8,7 @@ import { story2006Featured, story2006Photos } from '../data/story-2006';
 import { story2007Featured, story2007Photos } from '../data/story-2007';
 import { story2008Featured, story2008Photos } from '../data/story-2008';
 import { story2011Featured, story2011Photos } from '../data/story-2011';
+import { story2014Featured, story2014Photos } from '../data/story-2014';
 ---
 
 <section id="story" class="section story">
@@ -62,7 +63,7 @@ import { story2011Featured, story2011Photos } from '../data/story-2011';
 				<div class="story__copy">
 					<h3>Three rows in the ground</h3>
 					<p>
-						They planted three rows of trees and began the long learning curve of growing high-quality
+						We planted three rows of trees and began the long learning curve of growing high-quality
 						container trees in Eastern Washington: trial, error, and care, season after season.
 					</p>
 				</div>
@@ -201,6 +202,40 @@ import { story2011Featured, story2011Photos } from '../data/story-2011';
 			</article>
 
 			<article class="story__beat story__beat--photo reveal">
+				<p class="story__year">2014</p>
+				<div class="story__copy">
+					<h3>We open our Oregon nursery</h3>
+					<p>
+						To support our growing demand for conifer tree varieties, we open our Boring, Oregon
+						growing location. In the Willamette valley, it's the ideal place to grow evergreen
+						varieties.
+					</p>
+				</div>
+				<figure class="story__figure">
+					<Image
+						src={story2014Featured.src}
+						alt={story2014Featured.alt}
+						widths={[480, 720, 960]}
+						sizes="(max-width: 800px) 100vw, 420px"
+						quality={80}
+						class="story__img"
+					/>
+					<figcaption>
+						{story2014Featured.caption}
+						<button
+							type="button"
+							class="story__more-photos"
+							data-story-2014-open
+							aria-haspopup="dialog"
+							aria-controls="story-2014-dialog"
+						>
+							View more photos
+						</button>
+					</figcaption>
+				</figure>
+			</article>
+
+			<article class="story__beat story__beat--photo story__beat--photo-left reveal">
 				<p class="story__year">Today</p>
 				<div class="story__copy">
 					<h3>Over 70,000 trees</h3>
@@ -349,6 +384,31 @@ import { story2011Featured, story2011Photos } from '../data/story-2011';
 			}
 		</div>
 	</dialog>
+
+	<dialog class="story__dialog" id="story-2014-dialog" aria-label="2014 Oregon nursery photos">
+		<form method="dialog" class="story__dialog-bar">
+			<button type="submit" class="story__dialog-close" aria-label="Close">Close</button>
+		</form>
+		<div class="story__dialog-grid">
+			{
+				story2014Photos.map((item) => (
+					<figure class="story__dialog-item">
+						<Image
+							src={item.src}
+							alt={item.alt}
+							widths={[480, 720, 960]}
+							sizes="(max-width: 700px) 90vw, 280px"
+							quality={80}
+							class="story__dialog-img"
+							loading="lazy"
+							style={item.objectPosition ? `object-position: ${item.objectPosition}` : undefined}
+						/>
+						{item.caption && <figcaption>{item.caption}</figcaption>}
+					</figure>
+				))
+			}
+		</div>
+	</dialog>
 </section>
 
 <script>
@@ -357,6 +417,7 @@ import { story2011Featured, story2011Photos } from '../data/story-2011';
 		{ open: '[data-story-2007-open]', dialog: 'story-2007-dialog' },
 		{ open: '[data-story-2008-open]', dialog: 'story-2008-dialog' },
 		{ open: '[data-story-2011-open]', dialog: 'story-2011-dialog' },
+		{ open: '[data-story-2014-open]', dialog: 'story-2014-dialog' },
 	] as const;
 
 	for (const { open, dialog: dialogId } of storyDialogs) {
