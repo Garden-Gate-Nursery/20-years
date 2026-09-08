@@ -305,16 +305,23 @@ import { storyTodayFeatured, storyTodayPhotos } from '../data/story-today';
 			{
 				story2006Photos.map((item) => (
 					<figure class="story__dialog-item">
-						<Image
-							src={item.src}
-							alt={item.alt}
-							widths={[480, 720, 960]}
-							sizes="(max-width: 700px) 90vw, 280px"
-							quality={80}
-							class="story__dialog-img"
-							loading="lazy"
-							style={item.objectPosition ? `object-position: ${item.objectPosition}` : undefined}
-						/>
+						<button
+							type="button"
+							class="story__dialog-thumb"
+							data-story-photo-open
+							aria-label={`View photo: ${item.alt}`}
+						>
+							<Image
+								src={item.src}
+								alt={item.alt}
+								widths={[480, 720, 960]}
+								sizes="(max-width: 700px) 90vw, 280px"
+								quality={80}
+								class="story__dialog-img"
+								loading="lazy"
+								style={item.objectPosition ? `object-position: ${item.objectPosition}` : undefined}
+							/>
+						</button>
 					</figure>
 				))
 			}
@@ -329,16 +336,23 @@ import { storyTodayFeatured, storyTodayPhotos } from '../data/story-today';
 			{
 				story2007Photos.map((item) => (
 					<figure class="story__dialog-item">
-						<Image
-							src={item.src}
-							alt={item.alt}
-							widths={[480, 720, 960]}
-							sizes="(max-width: 700px) 90vw, 280px"
-							quality={80}
-							class="story__dialog-img"
-							loading="lazy"
-							style={item.objectPosition ? `object-position: ${item.objectPosition}` : undefined}
-						/>
+						<button
+							type="button"
+							class="story__dialog-thumb"
+							data-story-photo-open
+							aria-label={`View photo: ${item.alt}`}
+						>
+							<Image
+								src={item.src}
+								alt={item.alt}
+								widths={[480, 720, 960]}
+								sizes="(max-width: 700px) 90vw, 280px"
+								quality={80}
+								class="story__dialog-img"
+								loading="lazy"
+								style={item.objectPosition ? `object-position: ${item.objectPosition}` : undefined}
+							/>
+						</button>
 					</figure>
 				))
 			}
@@ -353,16 +367,23 @@ import { storyTodayFeatured, storyTodayPhotos } from '../data/story-today';
 			{
 				story2008Photos.map((item) => (
 					<figure class="story__dialog-item">
-						<Image
-							src={item.src}
-							alt={item.alt}
-							widths={[480, 720, 960]}
-							sizes="(max-width: 700px) 90vw, 280px"
-							quality={80}
-							class="story__dialog-img"
-							loading="lazy"
-							style={item.objectPosition ? `object-position: ${item.objectPosition}` : undefined}
-						/>
+						<button
+							type="button"
+							class="story__dialog-thumb"
+							data-story-photo-open
+							aria-label={`View photo: ${item.alt}`}
+						>
+							<Image
+								src={item.src}
+								alt={item.alt}
+								widths={[480, 720, 960]}
+								sizes="(max-width: 700px) 90vw, 280px"
+								quality={80}
+								class="story__dialog-img"
+								loading="lazy"
+								style={item.objectPosition ? `object-position: ${item.objectPosition}` : undefined}
+							/>
+						</button>
 					</figure>
 				))
 			}
@@ -377,16 +398,23 @@ import { storyTodayFeatured, storyTodayPhotos } from '../data/story-today';
 			{
 				story2011Photos.map((item) => (
 					<figure class="story__dialog-item">
-						<Image
-							src={item.src}
-							alt={item.alt}
-							widths={[480, 720, 960]}
-							sizes="(max-width: 700px) 90vw, 280px"
-							quality={80}
-							class="story__dialog-img"
-							loading="lazy"
-							style={item.objectPosition ? `object-position: ${item.objectPosition}` : undefined}
-						/>
+						<button
+							type="button"
+							class="story__dialog-thumb"
+							data-story-photo-open
+							aria-label={`View photo: ${item.alt}`}
+						>
+							<Image
+								src={item.src}
+								alt={item.alt}
+								widths={[480, 720, 960]}
+								sizes="(max-width: 700px) 90vw, 280px"
+								quality={80}
+								class="story__dialog-img"
+								loading="lazy"
+								style={item.objectPosition ? `object-position: ${item.objectPosition}` : undefined}
+							/>
+						</button>
 					</figure>
 				))
 			}
@@ -401,16 +429,23 @@ import { storyTodayFeatured, storyTodayPhotos } from '../data/story-today';
 			{
 				story2014Photos.map((item) => (
 					<figure class="story__dialog-item">
-						<Image
-							src={item.src}
-							alt={item.alt}
-							widths={[480, 720, 960]}
-							sizes="(max-width: 700px) 90vw, 280px"
-							quality={80}
-							class="story__dialog-img"
-							loading="lazy"
-							style={item.objectPosition ? `object-position: ${item.objectPosition}` : undefined}
-						/>
+						<button
+							type="button"
+							class="story__dialog-thumb"
+							data-story-photo-open
+							aria-label={`View photo: ${item.alt}`}
+						>
+							<Image
+								src={item.src}
+								alt={item.alt}
+								widths={[480, 720, 960]}
+								sizes="(max-width: 700px) 90vw, 280px"
+								quality={80}
+								class="story__dialog-img"
+								loading="lazy"
+								style={item.objectPosition ? `object-position: ${item.objectPosition}` : undefined}
+							/>
+						</button>
 					</figure>
 				))
 			}
@@ -425,20 +460,34 @@ import { storyTodayFeatured, storyTodayPhotos } from '../data/story-today';
 			{
 				storyTodayPhotos.map((item) => (
 					<figure class="story__dialog-item">
-						<Image
-							src={item.src}
-							alt={item.alt}
-							widths={[480, 720, 960]}
-							sizes="(max-width: 700px) 90vw, 280px"
-							quality={80}
-							class="story__dialog-img"
-							loading="lazy"
-							style={item.objectPosition ? `object-position: ${item.objectPosition}` : undefined}
-						/>
+						<button
+							type="button"
+							class="story__dialog-thumb"
+							data-story-photo-open
+							aria-label={`View photo: ${item.alt}`}
+						>
+							<Image
+								src={item.src}
+								alt={item.alt}
+								widths={[480, 720, 960]}
+								sizes="(max-width: 700px) 90vw, 280px"
+								quality={80}
+								class="story__dialog-img"
+								loading="lazy"
+								style={item.objectPosition ? `object-position: ${item.objectPosition}` : undefined}
+							/>
+						</button>
 					</figure>
 				))
 			}
 		</div>
+	</dialog>
+
+	<dialog class="story__photo-dialog" id="story-photo-dialog" aria-label="Photo viewer">
+		<form method="dialog" class="story__dialog-bar">
+			<button type="submit" class="story__dialog-close" aria-label="Close">Close</button>
+		</form>
+		<img class="story__photo-dialog-img" id="story-photo-dialog-img" alt="" />
 	</dialog>
 </section>
 
@@ -459,6 +508,28 @@ import { storyTodayFeatured, storyTodayPhotos } from '../data/story-today';
 		openBtn.addEventListener('click', () => dialog.showModal());
 		dialog.addEventListener('click', (event) => {
 			if (event.target === dialog) dialog.close();
+		});
+	}
+
+	const storyPhotoThumbs = Array.from(
+		document.querySelectorAll('[data-story-photo-open]'),
+	) as HTMLButtonElement[];
+	const storyPhotoDialog = document.getElementById('story-photo-dialog') as HTMLDialogElement | null;
+	const storyPhotoImg = document.getElementById('story-photo-dialog-img') as HTMLImageElement | null;
+
+	if (storyPhotoDialog && storyPhotoImg) {
+		storyPhotoThumbs.forEach((btn) => {
+			btn.addEventListener('click', () => {
+				const img = btn.querySelector('img');
+				if (!img) return;
+				storyPhotoImg.src = img.currentSrc || img.src;
+				storyPhotoImg.alt = img.alt;
+				storyPhotoDialog.showModal();
+			});
+		});
+
+		storyPhotoDialog.addEventListener('click', (event) => {
+			if (event.target === storyPhotoDialog) storyPhotoDialog.close();
 		});
 	}
 </script>
@@ -683,12 +754,42 @@ import { storyTodayFeatured, storyTodayPhotos } from '../data/story-today';
 		margin: 0;
 	}
 
+	.story__dialog-thumb {
+		display: block;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		border: none;
+		background: transparent;
+		cursor: zoom-in;
+	}
+
 	.story__dialog-img {
 		width: 100%;
 		height: auto;
 		aspect-ratio: 4 / 3;
 		object-fit: cover;
 		display: block;
+	}
+
+	.story__photo-dialog {
+		border: none;
+		padding: 0;
+		max-width: min(92vw, 56rem);
+		background: var(--navy-deep);
+		color: var(--cream);
+		box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+	}
+
+	.story__photo-dialog::backdrop {
+		background: rgba(15, 26, 42, 0.72);
+	}
+
+	.story__photo-dialog-img {
+		width: 100%;
+		max-height: 75vh;
+		object-fit: contain;
+		background: #000;
 	}
 
 </style>
