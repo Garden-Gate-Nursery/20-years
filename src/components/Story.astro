@@ -6,6 +6,7 @@ import everettSandra from '../assets/story/everett-sandra-foreheads.jpg';
 import nurseryRows from '../assets/growing/purple-green-rows.jpg';
 import { story2006Featured, story2006Photos } from '../data/story-2006';
 import { story2007Featured, story2007Photos } from '../data/story-2007';
+import { story2008Featured, story2008Photos } from '../data/story-2008';
 ---
 
 <section id="story" class="section story">
@@ -133,6 +134,39 @@ import { story2007Featured, story2007Photos } from '../data/story-2007';
 			</article>
 
 			<article class="story__beat story__beat--photo reveal">
+				<p class="story__year">2008</p>
+				<div class="story__copy">
+					<h3>A lot of work</h3>
+					<p>
+						Work continues at the nursery—planting bare-root trees, irrigation, staking, pruning and
+						more.
+					</p>
+				</div>
+				<figure class="story__figure">
+					<Image
+						src={story2008Featured.src}
+						alt={story2008Featured.alt}
+						widths={[480, 720, 960]}
+						sizes="(max-width: 800px) 100vw, 420px"
+						quality={80}
+						class="story__img"
+					/>
+					<figcaption>
+						{story2008Featured.caption}
+						<button
+							type="button"
+							class="story__more-photos"
+							data-story-2008-open
+							aria-haspopup="dialog"
+							aria-controls="story-2008-dialog"
+						>
+							View more photos
+						</button>
+					</figcaption>
+				</figure>
+			</article>
+
+			<article class="story__beat story__beat--photo story__beat--photo-left reveal">
 				<p class="story__year">Today</p>
 				<div class="story__copy">
 					<h3>Over 70,000 trees</h3>
@@ -231,12 +265,38 @@ import { story2007Featured, story2007Photos } from '../data/story-2007';
 			}
 		</div>
 	</dialog>
+
+	<dialog class="story__dialog" id="story-2008-dialog" aria-label="2008 nursery photos">
+		<form method="dialog" class="story__dialog-bar">
+			<button type="submit" class="story__dialog-close" aria-label="Close">Close</button>
+		</form>
+		<div class="story__dialog-grid">
+			{
+				story2008Photos.map((item) => (
+					<figure class="story__dialog-item">
+						<Image
+							src={item.src}
+							alt={item.alt}
+							widths={[480, 720, 960]}
+							sizes="(max-width: 700px) 90vw, 280px"
+							quality={80}
+							class="story__dialog-img"
+							loading="lazy"
+							style={item.objectPosition ? `object-position: ${item.objectPosition}` : undefined}
+						/>
+						{item.caption && <figcaption>{item.caption}</figcaption>}
+					</figure>
+				))
+			}
+		</div>
+	</dialog>
 </section>
 
 <script>
 	const storyDialogs = [
 		{ open: '[data-story-2006-open]', dialog: 'story-2006-dialog' },
 		{ open: '[data-story-2007-open]', dialog: 'story-2007-dialog' },
+		{ open: '[data-story-2008-open]', dialog: 'story-2008-dialog' },
 	] as const;
 
 	for (const { open, dialog: dialogId } of storyDialogs) {
