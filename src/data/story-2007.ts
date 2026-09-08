@@ -125,7 +125,7 @@ export const story2007Photos: GalleryItem[] = [
 	{
 		src: family18,
 		alt: 'Young woman in muddy work clothes standing under a nursery barn',
-		caption: 'Out in the fields',
+		caption: 'Rachel hard at work',
 		objectPosition: 'top',
 	},
 	{
@@ -221,4 +221,4 @@ export const story2007Photos: GalleryItem[] = [
 ];
 
 /** Branded truck photo — strongest “family business” signal */
-export const story2007Featured = story2007Photos[4];
+export const story2007Featured = story2007Photos[17];
