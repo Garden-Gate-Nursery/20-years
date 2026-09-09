@@ -1,0 +1,106 @@
+---
+---
+
+<aside class="sale-banner" id="sale-banner" aria-label="Anniversary sale" hidden>
+	<p class="sale-banner__text">
+		<strong>Anniversary Sale</strong> — 35% off 5+ trees online for Tri-Cities homeowners
+	</p>
+	<a
+		class="sale-banner__link btn btn--navy"
+		href="https://app.gardengatetrees.com/shop/trees"
+		rel="noopener noreferrer"
+	>
+		Shop trees
+	</a>
+</aside>
+
+<script>
+	const banner = document.getElementById('sale-banner');
+	const hero = document.querySelector('.hero');
+
+	if (banner instanceof HTMLElement && hero) {
+		let hideTimer = 0;
+
+		const setVisible = (visible: boolean) => {
+			window.clearTimeout(hideTimer);
+
+			if (visible) {
+				banner.hidden = false;
+				document.body.classList.add('has-sale-banner');
+				requestAnimationFrame(() => {
+					banner.classList.add('is-visible');
+					document.body.style.setProperty('--sale-banner-height', `${banner.offsetHeight}px`);
+				});
+				return;
+			}
+
+			banner.classList.remove('is-visible');
+			document.body.classList.remove('has-sale-banner');
+			document.body.style.removeProperty('--sale-banner-height');
+			hideTimer = window.setTimeout(() => {
+				banner.hidden = true;
+			}, 350);
+		};
+
+		const observer = new IntersectionObserver(
+			([entry]) => {
+				setVisible(!entry.isIntersecting);
+			},
+			{ threshold: 0 },
+		);
+
+		observer.observe(hero);
+	}
+</script>
+
+<style>
+	.sale-banner {
+		position: fixed;
+		bottom: 0;
+		right: 0;
+		z-index: 100;
+		display: flex;
+		align-items: center;
+		justify-content: between;
+		gap: 0.65rem 1rem;
+		padding: 0.75rem 1.5rem;
+		background: var(--sun);
+		color: var(--navy-deep);
+		font-family: var(--font-body);
+		font-size: 0.95rem;
+		line-height: 1.35;
+		box-shadow: 0 4px 18px rgba(15, 26, 42, 0.12);
+		transform: translateY(100%);
+		opacity: 0;
+		pointer-events: none;
+		transition:
+			transform 0.35s ease,
+			opacity 0.35s ease;
+	}
+
+	.sale-banner[hidden] {
+		display: none !important;
+	}
+
+	.sale-banner.is-visible {
+		transform: translateY(0);
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	.sale-banner__text {
+		margin: 0;
+	}
+
+	.sale-banner__link {
+		flex-shrink: 0;
+		padding: 0.2rem 0.7rem;
+		font-size: 0.9rem;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.sale-banner {
+			transition: none;
+		}
+	}
+</style>
