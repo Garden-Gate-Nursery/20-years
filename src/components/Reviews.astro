@@ -1,0 +1,167 @@
+---
+import { googleMapsUrl, reviews } from '../data/reviews';
+
+const starPath =
+	'M12 2.5l2.85 5.78 6.38.93-4.62 4.5 1.09 6.36L12 16.98l-5.7 3.09 1.09-6.36-4.62-4.5 6.38-.93L12 2.5z';
+---
+
+<section id="reviews" class="section reviews">
+	<div class="section__inner">
+		<div class="reviews__intro reveal">
+			<p class="section__eyebrow">From Google</p>
+			<h2>What customers say</h2>
+			<div class="reviews__rating" aria-label="5 out of 5 stars">
+				{
+					Array.from({ length: 5 }).map(() => (
+						<svg class="reviews__star" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+							<path d={starPath} />
+						</svg>
+					))
+				}
+			</div>
+			<p class="section__lead">
+				Five-star reviews from neighbors and landscapers who have shopped Garden Gate.
+			</p>
+		</div>
+
+		<ul class="reviews__list">
+			{
+				reviews.map((review, index) => (
+					<li
+						class="reviews__item reveal"
+						style={`transition-delay: ${Math.min(index * 60, 300)}ms`}
+					>
+						<blockquote class="reviews__quote">
+							<div class="reviews__stars" aria-label="5 out of 5 stars">
+								{Array.from({ length: 5 }).map(() => (
+									<svg class="reviews__star reviews__star--sm" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+										<path d={starPath} />
+									</svg>
+								))}
+							</div>
+							<p class="reviews__text">{review.quote}</p>
+							<footer class="reviews__author">
+								<cite>{review.author}</cite>
+								<span class="reviews__source">Google review</span>
+							</footer>
+						</blockquote>
+					</li>
+				))
+			}
+		</ul>
+
+		<p class="reviews__cta reveal">
+			<a class="btn btn--outline" href={googleMapsUrl} rel="noopener noreferrer" target="_blank">
+				Read more on Google
+			</a>
+		</p>
+	</div>
+</section>
+
+<style>
+	.reviews {
+		background:
+			linear-gradient(180deg, transparent, rgba(240, 213, 106, 0.1) 18%, rgba(61, 107, 99, 0.07) 72%, transparent);
+		padding-bottom: var(--space-2xl);
+	}
+
+	.reviews__intro {
+		margin-bottom: var(--space-lg);
+		max-width: 36rem;
+	}
+
+	.reviews__rating {
+		display: flex;
+		gap: 0.2rem;
+		margin: 0 0 var(--space-sm);
+	}
+
+	.reviews__star {
+		width: 1.5rem;
+		height: 1.5rem;
+		fill: var(--sun);
+		stroke: var(--ray-orange);
+		stroke-width: 0.75;
+	}
+
+	.reviews__star--sm {
+		width: 1rem;
+		height: 1rem;
+	}
+
+	.reviews__list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: var(--space-lg);
+	}
+
+	@media (min-width: 700px) {
+		.reviews__list {
+			grid-template-columns: repeat(2, 1fr);
+			gap: var(--space-lg) var(--space-xl);
+		}
+
+		.reviews__item:last-child:nth-child(odd) {
+			grid-column: 1 / -1;
+			max-width: 36rem;
+			justify-self: center;
+		}
+	}
+
+	@media (min-width: 1100px) {
+		.reviews__list {
+			grid-template-columns: repeat(3, 1fr);
+		}
+
+		.reviews__item:last-child:nth-child(odd) {
+			grid-column: auto;
+			max-width: none;
+			justify-self: stretch;
+		}
+	}
+
+	.reviews__quote {
+		margin: 0;
+		padding: 0;
+		border: 0;
+	}
+
+	.reviews__stars {
+		display: flex;
+		gap: 0.1rem;
+		margin-bottom: var(--space-xs);
+	}
+
+	.reviews__text {
+		font-size: 1.05rem;
+		color: var(--text);
+		white-space: pre-line;
+	}
+
+	.reviews__author {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		gap: 0.5rem 0.85rem;
+		margin-top: var(--space-sm);
+		font-style: normal;
+	}
+
+	.reviews__author cite {
+		font-family: var(--font-display);
+		font-style: normal;
+		font-weight: 550;
+		color: var(--navy);
+	}
+
+	.reviews__source {
+		font-size: 0.85rem;
+		color: var(--text-muted);
+	}
+
+	.reviews__cta {
+		margin-top: var(--space-lg);
+	}
+</style>
