@@ -30,7 +30,9 @@ Shop CTAs link to `https://gardengatetrees.com/shop` (external store).
 
 1. Connect this repo to a Netlify site.
 2. Build settings are in `netlify.toml` (`npm run build` → `dist`, Node 22).
-3. Add custom domain `tricities.gardengatetrees.com` in Netlify and point DNS (CNAME) to Netlify.
+3. Add custom domains and point DNS (CNAME) to Netlify:
+   - `tricities.gardengatetrees.com` — main Tri-Cities site
+   - `20-years.gardengatetrees.com` — 301 redirects to `https://tricities.gardengatetrees.com/20-years/` (configured in `netlify.toml`)
 4. **Contact form:** uses [Netlify Forms](https://docs.netlify.com/forms/setup/). After the first deploy, confirm the `contact` form appears under Netlify → Forms. Successful submissions redirect to `/contact/thanks`. Submissions only work on deployed Netlify URLs (not plain `astro preview` without the Netlify CLI).
 
 ## Project structure

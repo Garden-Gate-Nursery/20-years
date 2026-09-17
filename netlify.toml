@@ -6,6 +6,18 @@
   NODE_VERSION = "22"
 
 [[redirects]]
+  from = "https://20-years.gardengatetrees.com/"
+  to = "https://tricities.gardengatetrees.com/20-years/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://20-years.gardengatetrees.com/*"
+  to = "https://tricities.gardengatetrees.com/20-years/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/shop"
   to = "https://gardengatetrees.com/shop"
   status = 302
