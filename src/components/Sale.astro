@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import saleImage from '../assets/hero/maple-fall.jpg';
+import { SCHEDULE_URL, SHOP_URL } from '../constants/site';
 ---
 
 <section id="sale" class="section sale">
@@ -19,14 +20,14 @@ import saleImage from '../assets/hero/maple-fall.jpg';
 			<div class="sale__actions">
 				<a
 					class="btn btn--navy"
-					href="https://app.gardengatetrees.com/shop/trees?utm_source=20-year-site"
-					rel="noopener">Shop on gardengatetrees.com</a
+					href={SHOP_URL}
+					rel="noopener noreferrer">Shop on gardengatetrees.com</a
 				>
 				<a class="btn btn--outline" href="tel:5095472254">Call 509-547-2254</a>
 			</div>
 			<p class="sale__note">
 				Local homeowners are welcome to
-				<a href="https://www.gardengatetrees.com/schedule" rel="noopener noreferrer">schedule a nursery visit</a
+				<a href={SCHEDULE_URL} rel="noopener noreferrer">schedule a nursery visit</a
 				>.
 			</p>
 		</div>

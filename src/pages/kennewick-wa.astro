@@ -1,0 +1,8 @@
+---
+import CityLanding from '../components/CityLanding.astro';
+import { getCity } from '../data/cities';
+
+const city = getCity('kennewick-wa');
+---
+
+<CityLanding city={city} />

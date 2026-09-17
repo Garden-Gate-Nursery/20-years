@@ -1,0 +1,94 @@
+---
+import { Image } from 'astro:assets';
+import { galleryItems } from '../data/gallery';
+
+const teaserItems = galleryItems.slice(0, 6);
+---
+
+<section class="section gallery-teaser" id="gallery-teaser">
+	<div class="section__inner">
+		<div class="gallery-teaser__intro reveal">
+			<p class="section__eyebrow">From the farm</p>
+			<h2>See life at Garden Gate</h2>
+			<p class="section__lead">
+				Rows of container trees, spring blossoms, and the people who grow them in Pasco.
+			</p>
+		</div>
+
+		<div class="gallery-teaser__grid">
+			{
+				teaserItems.map((item, index) => (
+					<figure
+						class="gallery-teaser__item reveal"
+						style={`transition-delay: ${Math.min(index * 50, 300)}ms`}
+					>
+						<Image
+							src={item.src}
+							alt={item.alt}
+							widths={[320, 480, 720]}
+							sizes="(max-width: 700px) 50vw, 33vw"
+							quality={75}
+							class="gallery-teaser__img"
+							loading="lazy"
+						/>
+					</figure>
+				))
+			}
+		</div>
+
+		<p class="gallery-teaser__cta reveal">
+			<a class="btn btn--outline" href="/gallery">View full gallery</a>
+		</p>
+	</div>
+</section>
+
+<style>
+	.gallery-teaser__intro {
+		max-width: 36rem;
+		margin-bottom: var(--space-lg);
+	}
+
+	.gallery-teaser__grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 0.75rem;
+	}
+
+	@media (min-width: 700px) {
+		.gallery-teaser__grid {
+			grid-template-columns: repeat(3, 1fr);
+			gap: 1rem;
+		}
+	}
+
+	.gallery-teaser__item {
+		margin: 0;
+		overflow: hidden;
+		aspect-ratio: 4 / 3;
+	}
+
+	.gallery-teaser__img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 0.5s ease;
+	}
+
+	.gallery-teaser__item:hover .gallery-teaser__img {
+		transform: scale(1.03);
+	}
+
+	.gallery-teaser__cta {
+		margin: var(--space-lg) 0 0;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.gallery-teaser__img {
+			transition: none;
+		}
+
+		.gallery-teaser__item:hover .gallery-teaser__img {
+			transform: none;
+		}
+	}
+</style>

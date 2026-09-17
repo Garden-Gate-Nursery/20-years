@@ -1,0 +1,115 @@
+---
+import { SCHEDULE_URL, SHOP_URL } from '../constants/site';
+
+const ways = [
+	{
+		title: 'Shop online',
+		body: 'Browse trees ready for Tri-Cities landscapes and order from our online store.',
+		href: SHOP_URL,
+		label: 'Shop Trees',
+		external: true,
+	},
+	{
+		title: 'Visit by appointment',
+		body: 'Come out to the Pasco farm in season for one-on-one help picking the right tree.',
+		href: SCHEDULE_URL,
+		label: 'Schedule a visit',
+		external: true,
+	},
+	{
+		title: 'Open to the public events',
+		body: 'We periodically open the nursery so local homeowners can walk the rows and choose trees.',
+		href: '/contact',
+		label: 'Ask about events',
+		external: false,
+	},
+];
+---
+
+<section class="section how-to-buy" id="how-to-buy">
+	<div class="section__inner">
+		<div class="how-to-buy__intro reveal">
+			<p class="section__eyebrow">How to buy</p>
+			<h2>Looking for a plant nursery near you?</h2>
+			<p class="section__lead">
+				We are a family plant nursery in Pasco serving Tri-Cities homeowners. Shop online anytime,
+				or schedule a visit to the farm.
+			</p>
+		</div>
+
+		<ol class="how-to-buy__list">
+			{
+				ways.map((way, index) => (
+					<li class="how-to-buy__item reveal" style={`transition-delay: ${index * 80}ms`}>
+						<span class="how-to-buy__num" aria-hidden="true">
+							{String(index + 1).padStart(2, '0')}
+						</span>
+						<h3>{way.title}</h3>
+						<p>{way.body}</p>
+						<a
+							class="how-to-buy__link"
+							href={way.href}
+							rel={way.external ? 'noopener noreferrer' : undefined}
+						>
+							{way.label}
+						</a>
+					</li>
+				))
+			}
+		</ol>
+	</div>
+</section>
+
+<style>
+	.how-to-buy__intro {
+		max-width: 36rem;
+		margin-bottom: var(--space-lg);
+	}
+
+	.how-to-buy__list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: var(--space-lg);
+	}
+
+	@media (min-width: 800px) {
+		.how-to-buy__list {
+			grid-template-columns: repeat(3, 1fr);
+			gap: var(--space-md);
+		}
+	}
+
+	.how-to-buy__item {
+		margin: 0;
+		padding: 0;
+	}
+
+	.how-to-buy__num {
+		display: block;
+		font-family: var(--font-display);
+		font-size: 1.5rem;
+		font-weight: 550;
+		color: var(--hill-teal);
+		margin-bottom: var(--space-xs);
+	}
+
+	.how-to-buy__item h3 {
+		margin-bottom: 0.5rem;
+	}
+
+	.how-to-buy__item p {
+		color: var(--text-muted);
+		margin-bottom: var(--space-sm);
+	}
+
+	.how-to-buy__link {
+		font-weight: 600;
+		text-decoration: none;
+	}
+
+	.how-to-buy__link:hover {
+		text-decoration: underline;
+	}
+</style>

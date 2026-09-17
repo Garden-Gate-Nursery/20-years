@@ -1,12 +1,13 @@
 ---
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.webp';
+import { cities } from '../data/cities';
+import { SHOP_URL, SITE_ADDRESS, SITE_PHONE, SITE_PHONE_TEL, navLinks } from '../constants/site';
 
 const links = [
-	{ href: 'https://www.gardengatetrees.com/', label: 'Home' },
-	{ href: 'https://www.gardengatetrees.com/catalog', label: 'Tree Catalog' },
-	{ href: 'https://www.gardengatetrees.com/about', label: 'About' },
-	{ href: 'https://www.gardengatetrees.com/contact-us', label: 'Contact' },
+	...navLinks,
+	{ href: '/20-years', label: '20 Years' },
+	{ href: SHOP_URL, label: 'Shop Trees', external: true },
 ];
 ---
 
@@ -15,16 +16,30 @@ const links = [
 		<div class="footer__brand">
 			<Image src={logo} alt="Garden Gate Nursery" width={96} densities={[1, 2]} quality={85} class="footer__logo" />
 			<p class="footer__slogan"><em>Meet you at the Garden Gate!</em></p>
-			<p class="footer__locales">Boring, Oregon · Tri-Cities, Washington</p>
+			<p class="footer__locales">Pasco, Washington · Tri-Cities</p>
+			<p class="footer__address">{SITE_ADDRESS.line}</p>
 			<p class="footer__phone">
-				<a href="tel:5095472254">509-547-2254</a>
+				<a href={`tel:${SITE_PHONE_TEL}`}>{SITE_PHONE}</a>
 			</p>
 		</div>
-		<nav class="footer__nav" aria-label="Garden Gate main site">
+		<nav class="footer__nav" aria-label="Site">
 			{
 				links.map((link) => (
-					<a href={link.href} rel="noopener noreferrer">
+					<a
+						href={link.href}
+						rel={'external' in link && link.external ? 'noopener noreferrer' : undefined}
+					>
 						{link.label}
+					</a>
+				))
+			}
+		</nav>
+		<nav class="footer__nav footer__cities" aria-label="Serving Tri-Cities">
+			<p class="footer__nav-label">Serving Tri-Cities</p>
+			{
+				cities.map((city) => (
+					<a href={`/${city.slug}`}>
+						{city.name}, WA
 					</a>
 				))
 			}
@@ -48,6 +63,8 @@ const links = [
 		gap: var(--space-lg);
 		justify-content: space-between;
 		align-items: flex-start;
+		font-size: 0.9rem;
+		font-weight: 500;
 	}
 
 	.footer__logo {
@@ -69,9 +86,14 @@ const links = [
 	}
 
 	.footer__locales,
+	.footer__address,
 	.footer__phone {
 		margin: 0;
 		font-size: 0.95rem;
+	}
+
+	.footer__address {
+		margin-top: 0.25rem;
 	}
 
 	.footer a {
@@ -88,6 +110,15 @@ const links = [
 		flex-direction: column;
 		gap: 0.65rem;
 		font-weight: 600;
+	}
+
+	.footer__nav-label {
+		margin: 0 0 0.15rem;
+		font-size: 0.75rem;
+		font-weight: 600;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--sun);
 	}
 
 	.footer__copy {

@@ -1,0 +1,60 @@
+---
+import { Image } from 'astro:assets';
+import storyImage from '../assets/story/everett-sandra-blossoms.jpg';
+---
+
+<section class="section anniversary-teaser" id="anniversary">
+	<div class="section__inner anniversary-teaser__inner reveal">
+		<div class="anniversary-teaser__copy">
+			<p class="section__eyebrow">Since 2006</p>
+			<h2>Celebrating 20 years of growing trees</h2>
+			<p class="section__lead">
+				From hay farming to a family tree nursery in the Columbia Basin — read our story and see
+				pictures from over the years.
+			</p>
+			<a class="btn btn--navy" href="/20-years">Visit the 20-year celebration</a>
+		</div>
+		<figure class="anniversary-teaser__figure">
+			<Image
+				src={storyImage}
+				alt="Everett and Sandra among blossoming trees at Garden Gate Nursery"
+				widths={[600, 900, 1200]}
+				sizes="(max-width: 900px) 100vw, 45vw"
+				quality={80}
+				class="anniversary-teaser__img"
+				loading="lazy"
+			/>
+		</figure>
+	</div>
+</section>
+
+<style>
+	.anniversary-teaser__inner {
+		display: grid;
+		gap: var(--space-lg);
+		align-items: center;
+	}
+
+	@media (min-width: 900px) {
+		.anniversary-teaser__inner {
+			grid-template-columns: 1fr 1.05fr;
+			gap: var(--space-xl);
+		}
+	}
+
+	.anniversary-teaser__copy .section__lead {
+		margin-bottom: var(--space-md);
+	}
+
+	.anniversary-teaser__figure {
+		margin: 0;
+		overflow: hidden;
+	}
+
+	.anniversary-teaser__img {
+		width: 100%;
+		height: auto;
+		aspect-ratio: 4 / 3;
+		object-fit: cover;
+	}
+</style>

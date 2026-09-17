@@ -1,25 +1,47 @@
 ---
 import { Image } from 'astro:assets';
 import { galleryItems } from '../data/gallery';
+
+interface Props {
+	eyebrow?: string;
+	heading?: string;
+	lead?: string;
+	limit?: number;
+	id?: string;
+	headingLevel?: 'h1' | 'h2';
+}
+
+const {
+	eyebrow = 'People & Place',
+	heading = 'Pictures from over the years',
+	lead = 'Family, friends, and the trees that fill our fields: a look at life at Garden Gate.',
+	limit,
+	id = 'gallery',
+	headingLevel = 'h2',
+} = Astro.props;
+
+const items = typeof limit === 'number' ? galleryItems.slice(0, limit) : galleryItems;
+const HeadingTag = headingLevel;
+const dialogId = `${id}-dialog`;
+const dialogImgId = `${id}-dialog-img`;
 ---
 
-<section id="gallery" class="section gallery">
+<section id={id} class="section gallery">
 	<div class="section__inner">
 		<div class="gallery__intro reveal">
-			<p class="section__eyebrow">People &amp; Place</p>
-			<h2>Pictures from over the years</h2>
-			<p class="section__lead">
-				Family, friends, and the trees that fill our fields: a look at life at Garden Gate.
-			</p>
+			<p class="section__eyebrow">{eyebrow}</p>
+			<HeadingTag>{heading}</HeadingTag>
+			<p class="section__lead">{lead}</p>
 		</div>
 
 		<div class="gallery__grid">
 			{
-				galleryItems.map((item, index) => (
+				items.map((item, index) => (
 					<button
 						type="button"
 						class="gallery__item reveal"
 						data-gallery-open
+						data-gallery-root={id}
 						aria-label={`View photo: ${item.alt}`}
 						style={`transition-delay: ${Math.min(index * 40, 400)}ms`}
 					>
@@ -38,34 +60,39 @@ import { galleryItems } from '../data/gallery';
 		</div>
 	</div>
 
-	<dialog class="gallery__dialog" id="gallery-dialog" aria-label="Photo viewer">
+	<dialog class="gallery__dialog" id={dialogId} aria-label="Photo viewer">
 		<form method="dialog" class="gallery__dialog-bar">
 			<button type="submit" class="gallery__close" aria-label="Close">Close</button>
 		</form>
-		<img class="gallery__dialog-img" id="gallery-dialog-img" alt="" />
+		<img class="gallery__dialog-img" id={dialogImgId} alt="" />
 	</dialog>
 </section>
 
 <script>
-	const items = Array.from(document.querySelectorAll('[data-gallery-open]')) as HTMLButtonElement[];
-	const dialog = document.getElementById('gallery-dialog') as HTMLDialogElement | null;
-	const dialogImg = document.getElementById('gallery-dialog-img') as HTMLImageElement | null;
+	document.querySelectorAll('[data-gallery-root]').forEach((btn) => {
+		if (!(btn instanceof HTMLButtonElement)) return;
+		const rootId = btn.dataset.galleryRoot;
+		if (!rootId) return;
 
-	if (dialog && dialogImg) {
-		items.forEach((btn) => {
-			btn.addEventListener('click', () => {
-				const img = btn.querySelector('img');
-				if (!img) return;
-				dialogImg.src = img.currentSrc || img.src;
-				dialogImg.alt = img.alt;
-				dialog.showModal();
-			});
-		});
+		const dialog = document.getElementById(`${rootId}-dialog`) as HTMLDialogElement | null;
+		const dialogImg = document.getElementById(`${rootId}-dialog-img`) as HTMLImageElement | null;
+		if (!dialog || !dialogImg) return;
 
-		dialog.addEventListener('click', (event) => {
-			if (event.target === dialog) dialog.close();
+		btn.addEventListener('click', () => {
+			const img = btn.querySelector('img');
+			if (!img) return;
+			dialogImg.src = img.currentSrc || img.src;
+			dialogImg.alt = img.alt;
+			dialog.showModal();
 		});
-	}
+	});
+
+	document.querySelectorAll('.gallery__dialog').forEach((dialogEl) => {
+		if (!(dialogEl instanceof HTMLDialogElement)) return;
+		dialogEl.addEventListener('click', (event) => {
+			if (event.target === dialogEl) dialogEl.close();
+		});
+	});
 </script>
 
 <style>

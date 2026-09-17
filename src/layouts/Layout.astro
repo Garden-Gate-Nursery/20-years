@@ -7,9 +7,14 @@ interface Props {
 }
 
 const {
-	title = 'Garden Gate Nursery: 20 Years',
-	description = 'Celebrating 20 years of Garden Gate Nursery: our story, people, and high-quality container trees for the Pacific Northwest.',
+	title = 'Plant Nursery in Pasco & Tri-Cities WA | Garden Gate Nursery',
+	description =
+		'Garden Gate is a plant nursery in Pasco, Washington growing shade and ornamental trees for Tri-Cities homeowners. Shop online or visit our local nursery.',
 } = Astro.props;
+
+const canonicalURL = Astro.site
+	? new URL(Astro.url.pathname, Astro.site).href
+	: Astro.url.href;
 ---
 
 <!doctype html>
@@ -20,11 +25,13 @@ const {
 		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 		<link rel="icon" href="/favicon.ico" sizes="32x32" />
 		<link rel="apple-touch-icon" href="/logo.webp" />
+		<link rel="canonical" href={canonicalURL} />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL} />
 		<meta property="og:image" content="/og-image.webp" />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:image" content="/og-image.webp" />
@@ -56,7 +63,7 @@ const {
 	<!-- Google Tag Manager (noscript) -->
 	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TXMR6PJ8"
 	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-	<!-- End Google Tag Manager (noscript) -->
+	<!-- End Google Tag Manager -->
 		<slot />
 		<script>
 			const reveals = document.querySelectorAll('.reveal');

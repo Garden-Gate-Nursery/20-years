@@ -1,0 +1,117 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import ContactForm from '../components/ContactForm.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import {
+	SCHEDULE_URL,
+	SHOP_URL,
+	SITE_ADDRESS,
+	SITE_PHONE,
+	SITE_PHONE_TEL,
+} from '../constants/site';
+import Reviews from '../components/Reviews.astro';
+---
+
+<Layout
+	title="Contact Garden Gate Nursery | Tri-Cities"
+	description="Contact or schedule a visit at our Pasco plant nursery. Ask about trees for your Tri-Cities yard, appointments, or open-to-the-public events."
+>
+	<SiteHeader />
+	<main>
+		<section class="section contact">
+			<div class="section__inner contact__inner">
+				<div class="contact__info reveal">
+					<p class="section__eyebrow">Visit &amp; reach us</p>
+					<h1>Contact</h1>
+					<p class="section__lead">
+						Questions about trees for your yard, appointments, or open-to-the-public events?
+						Send a note or call the nursery.
+					</p>
+
+					<ul class="contact__details">
+						<li>
+							<span class="contact__label">Phone</span>
+							<a href={`tel:${SITE_PHONE_TEL}`}>{SITE_PHONE}</a>
+						</li>
+						<li>
+							<span class="contact__label">Address</span>
+							<span>{SITE_ADDRESS.line}</span>
+						</li>
+						<li>
+							<span class="contact__label">Visits</span>
+							<span>
+								We welcome Tri-Cities homeowners by appointment in season and during periodic
+								open-to-the-public events.{' '}
+								<a href={SCHEDULE_URL} rel="noopener noreferrer">Schedule a visit</a>.
+							</span>
+						</li>
+					</ul>
+
+					<p class="contact__shop">
+						<a class="btn btn--primary" href={SHOP_URL} rel="noopener noreferrer">Shop Trees</a>
+					</p>
+				</div>
+
+				<div class="contact__form-wrap reveal">
+					<ContactForm />
+				</div>
+			</div>
+		</section>
+		
+		<Reviews />
+	</main>
+	<SiteFooter />
+</Layout>
+
+<style>
+	.contact__inner {
+		display: grid;
+		gap: var(--space-xl);
+	}
+
+	@media (min-width: 900px) {
+		.contact__inner {
+			grid-template-columns: 1fr 1fr;
+			align-items: start;
+			gap: var(--space-xl);
+		}
+	}
+
+	.contact h1 {
+		font-size: clamp(2.25rem, 5vw, 3.25rem);
+	}
+
+	.contact__details {
+		list-style: none;
+		margin: var(--space-lg) 0 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-md);
+	}
+
+	.contact__label {
+		display: block;
+		font-size: 0.8rem;
+		font-weight: 600;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--hill-teal);
+		margin-bottom: 0.35rem;
+	}
+
+	.contact__details a {
+		font-weight: 600;
+		text-decoration: none;
+		color: var(--navy);
+	}
+
+	.contact__details a:hover {
+		color: var(--hill-teal);
+	}
+
+	.contact__shop {
+		margin-top: var(--space-lg);
+	}
+</style>

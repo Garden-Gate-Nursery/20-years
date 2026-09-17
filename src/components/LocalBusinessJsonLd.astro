@@ -1,0 +1,13 @@
+---
+import { buildLocalBusinessJsonLd } from '../data/local-business';
+
+interface Props {
+	pageUrl?: string;
+	primaryCity?: string;
+}
+
+const { pageUrl, primaryCity } = Astro.props;
+const jsonLd = buildLocalBusinessJsonLd({ pageUrl, primaryCity });
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

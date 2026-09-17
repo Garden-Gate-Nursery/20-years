@@ -1,46 +1,46 @@
-# Astro Starter Kit: Basics
+# Garden Gate Nursery — Tri-Cities homeowner site
 
-```sh
-npm create astro@latest -- --template basics
-```
+Astro site for local Tri-Cities, Washington homeowners, intended for
+`tricities.gardengatetrees.com`.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Pages
 
-## 🚀 Project Structure
+| Path | Purpose |
+|------|---------|
+| `/` | Home |
+| `/about` | About the nursery |
+| `/gallery` | Photo gallery |
+| `/contact` | Contact + Netlify form |
+| `/contact/thanks` | Form success confirmation |
+| `/20-years` | 20-year anniversary story |
 
-Inside of your Astro project, you'll see the following folders and files:
+Shop CTAs link to `https://gardengatetrees.com/shop` (external store).
+
+## Commands
+
+| Command | Action |
+|---------|--------|
+| `npm install` | Install dependencies |
+| `npm run dev` | Start local dev server |
+| `astro dev --background` | Start background Astro dev server |
+| `npm run build` | Build to `./dist` |
+| `npm run preview` | Preview the production build |
+
+## Deploy (Netlify)
+
+1. Connect this repo to a Netlify site.
+2. Build settings are in `netlify.toml` (`npm run build` → `dist`, Node 22).
+3. Add custom domain `tricities.gardengatetrees.com` in Netlify and point DNS (CNAME) to Netlify.
+4. **Contact form:** uses [Netlify Forms](https://docs.netlify.com/forms/setup/). After the first deploy, confirm the `contact` form appears under Netlify → Forms. Successful submissions redirect to `/contact/thanks`. Submissions only work on deployed Netlify URLs (not plain `astro preview` without the Netlify CLI).
+
+## Project structure
 
 ```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+src/
+  components/   # Shared UI (header, heroes, gallery, forms)
+  constants/    # Site URLs, phone, address, nav
+  data/         # Gallery and anniversary content
+  layouts/      # Document shell
+  pages/        # Routes
+  styles/       # Brand tokens and global CSS
 ```
-
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

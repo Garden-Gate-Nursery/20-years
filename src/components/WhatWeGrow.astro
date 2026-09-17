@@ -1,0 +1,82 @@
+---
+import { Image } from 'astro:assets';
+import rows from '../assets/growing/purple-green-rows.jpg';
+import { SHOP_URL } from '../constants/site';
+---
+
+<section class="section what-we-grow" id="what-we-grow">
+	<div class="section__inner what-we-grow__inner reveal">
+		<div class="what-we-grow__copy">
+			<p class="section__eyebrow">What we grow</p>
+			<h2>Shade and ornamental trees for Tri-Cities yards</h2>
+			<p class="section__lead">
+				Garden Gate specializes in high-quality container trees chosen for Pacific Northwest
+				landscapes — the kinds of trees that give a yard shade, structure, and lasting beauty.
+			</p>
+			<p>
+				<strong>Shade trees</strong> build a permanent canopy: maples, lindens, zelkovas, and more
+				selected to thrive in the Columbia Basin climate.
+			</p>
+			<p>
+				<strong>Ornamental trees</strong> bring flowers, form, and seasonal color — redbuds,
+				crabapples, serviceberries, and other standouts for front yards and accent plantings.
+			</p>
+			<a class="btn btn--primary" href={SHOP_URL} rel="noopener noreferrer">Shop Trees</a>
+		</div>
+		<figure class="what-we-grow__figure">
+			<Image
+				src={rows}
+				alt="Purple and green ornamental trees lining a nursery path at Garden Gate"
+				widths={[600, 900, 1200]}
+				sizes="(max-width: 900px) 100vw, 48vw"
+				quality={80}
+				class="what-we-grow__img"
+				loading="lazy"
+			/>
+		</figure>
+	</div>
+</section>
+
+<style>
+	.what-we-grow__inner {
+		display: grid;
+		gap: var(--space-lg);
+		align-items: center;
+	}
+
+	@media (min-width: 900px) {
+		.what-we-grow__inner {
+			grid-template-columns: 1fr 1.05fr;
+			gap: var(--space-xl);
+		}
+	}
+
+	.what-we-grow__copy .section__lead {
+		margin-bottom: var(--space-sm);
+	}
+
+	.what-we-grow__copy p {
+		color: var(--text-muted);
+	}
+
+	.what-we-grow__copy strong {
+		color: var(--navy);
+		font-weight: 600;
+	}
+
+	.what-we-grow__copy .btn {
+		margin-top: var(--space-sm);
+	}
+
+	.what-we-grow__figure {
+		margin: 0;
+		overflow: hidden;
+	}
+
+	.what-we-grow__img {
+		width: 100%;
+		height: auto;
+		aspect-ratio: 4 / 3;
+		object-fit: cover;
+	}
+</style>

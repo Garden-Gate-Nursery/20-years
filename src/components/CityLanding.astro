@@ -1,0 +1,181 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from './SiteHeader.astro';
+import SiteFooter from './SiteFooter.astro';
+import LocalBusinessJsonLd from './LocalBusinessJsonLd.astro';
+import type { CityPage } from '../types/cities';
+import { getOtherCities } from '../data/cities';
+import {
+	SCHEDULE_URL,
+	SHOP_URL,
+	SITE_ADDRESS,
+	SITE_ORIGIN,
+	SITE_PHONE,
+	SITE_PHONE_TEL,
+} from '../constants/site';
+import Reviews from './Reviews.astro';
+import Sale from './Sale.astro';
+
+interface Props {
+	city: CityPage;
+}
+
+const { city } = Astro.props;
+const otherCities = getOtherCities(city.slug);
+const pageUrl = `${SITE_ORIGIN}/${city.slug}`;
+---
+
+<Layout title={city.title} description={city.description}>
+	<LocalBusinessJsonLd pageUrl={pageUrl} primaryCity={city.name} />
+	<SiteHeader />
+	<main>
+		<section class="section city-hero">
+			<div class="section__inner">
+				<div class="city-hero__copy reveal">
+					<p class="section__eyebrow">Trees for {city.name}</p>
+					<h1>{city.h1}</h1>
+					<p class="section__lead">{city.lead}</p>
+					<div class="city-hero__actions">
+						<a class="btn btn--primary" href={SHOP_URL} rel="noopener noreferrer">Shop Trees</a>
+						<a class="btn btn--outline" href="/contact">Contact Us</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section city-body">
+			<div class="section__inner city-body__inner">
+				<div class="city-body__copy reveal">
+					<p class="section__eyebrow">Garden Gate Nursery</p>
+					<h2>A plant nursery serving {city.name} homeowners</h2>
+					{city.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+					<div class="city-body__actions">
+						<a class="btn btn--navy" href={SHOP_URL} rel="noopener noreferrer">Shop Trees</a>
+						<a class="btn btn--outline" href={SCHEDULE_URL} rel="noopener noreferrer"
+							>Schedule a visit</a
+						>
+					</div>
+				</div>
+
+				<aside class="city-body__aside reveal">
+					<p class="section__eyebrow">Spring &amp; fall</p>
+					<h2>When to plant in {city.name}</h2>
+					<p>{city.plantingNote}</p>
+					<p class="city-body__contact">
+						Call <a href={`tel:${SITE_PHONE_TEL}`}>{SITE_PHONE}</a>
+						<br />
+						{SITE_ADDRESS.line}
+					</p>
+				</aside>
+			</div>
+		</section>
+
+		<section class="section city-areas">
+			<div class="section__inner reveal">
+				<p class="section__eyebrow">Serving Tri-Cities</p>
+				<h2>More local tree pages</h2>
+				<p class="section__lead">
+					Garden Gate also serves homeowners across the Tri-Cities from our Pasco nursery.
+				</p>
+				<ul class="city-areas__list">
+					{
+						otherCities.map((other) => (
+							<li>
+								<a href={`/${other.slug}`}>Trees for {other.name}, WA</a>
+							</li>
+						))
+					}
+				</ul>
+			</div>
+		</section>
+		
+		<Reviews />
+		<Sale/>
+	</main>
+	<SiteFooter />
+</Layout>
+
+<style>
+	.city-hero__copy {
+		max-width: 40rem;
+		margin-inline: 0;
+		text-align: left;
+	}
+
+	.city-hero h1 {
+		font-size: clamp(2.25rem, 5vw, 3.25rem);
+	}
+
+	.city-hero__actions,
+	.city-body__actions {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: flex-start;
+		gap: 0.75rem;
+		margin-top: var(--space-md);
+	}
+
+	.city-body {
+		padding-top: 0;
+	}
+
+	.city-body__inner {
+		display: grid;
+		gap: var(--space-xl);
+	}
+
+	@media (min-width: 900px) {
+		.city-body__inner {
+			grid-template-columns: 1.4fr 1fr;
+			align-items: start;
+			gap: var(--space-xl);
+		}
+	}
+
+	.city-body__copy p,
+	.city-body__aside p {
+		color: var(--text-muted);
+	}
+
+	.city-body__aside {
+		padding: var(--space-md);
+		border-top: 2px solid var(--hill-teal);
+	}
+
+	.city-body__aside h2 {
+		font-size: clamp(1.5rem, 3vw, 1.85rem);
+	}
+
+	.city-body__contact {
+		margin-top: var(--space-md);
+		font-weight: 600;
+		color: var(--navy) !important;
+	}
+
+	.city-body__contact a {
+		color: var(--navy);
+		text-decoration: none;
+	}
+
+	.city-body__contact a:hover {
+		color: var(--hill-teal);
+	}
+
+	.city-areas__list {
+		list-style: none;
+		margin: var(--space-md) 0 0;
+		padding: 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem 1.5rem;
+	}
+
+	.city-areas__list a {
+		font-weight: 600;
+		text-decoration: none;
+	}
+
+	.city-areas__list a:hover {
+		text-decoration: underline;
+	}
+</style>

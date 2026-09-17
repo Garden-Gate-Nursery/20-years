@@ -94,6 +94,17 @@ p:last-child {
 	margin-bottom: 0;
 }
 
+.shell {
+	width: 100%;
+	padding-inline: var(--space-md);
+	box-sizing: border-box;
+}
+
+.shell__inner {
+	max-width: var(--max-width);
+	margin-inline: auto;
+}
+
 .section {
 	padding: var(--space-xl) var(--space-md);
 }

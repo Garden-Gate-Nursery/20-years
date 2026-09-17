@@ -1,0 +1,47 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import { SITE_PHONE, SITE_PHONE_TEL } from '../../constants/site';
+---
+
+<Layout
+	title="Message sent | Garden Gate Nursery"
+	description="Thank you for contacting Garden Gate Nursery."
+>
+	<SiteHeader />
+	<main>
+		<section class="section thanks">
+			<div class="section__inner thanks__inner reveal">
+				<p class="section__eyebrow">Contact</p>
+				<h1>Thank you</h1>
+				<p class="section__lead">
+					We received your message and will get back to you soon. You can also call us at{' '}
+					<a href={`tel:${SITE_PHONE_TEL}`}>{SITE_PHONE}</a>.
+				</p>
+				<div class="thanks__actions">
+					<a class="btn btn--outline" href="/contact">Back to contact</a>
+					<a class="btn btn--primary" href="/">Home</a>
+				</div>
+			</div>
+		</section>
+	</main>
+	<SiteFooter />
+</Layout>
+
+<style>
+	.thanks__inner {
+		max-width: 36rem;
+	}
+
+	.thanks h1 {
+		font-size: clamp(2.25rem, 5vw, 3.25rem);
+	}
+
+	.thanks__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-top: var(--space-md);
+	}
+</style>

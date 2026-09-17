@@ -1,0 +1,85 @@
+---
+import { Image } from 'astro:assets';
+import containers from '../assets/gallery/spring-47.jpg';
+import { SHOP_URL } from '../constants/site';
+---
+
+<section class="section planting-season" id="planting-season">
+	<div class="section__inner planting-season__inner reveal">
+		<figure class="planting-season__figure">
+			<Image
+				src={containers}
+				alt="Large container-grown trees with drip irrigation at Garden Gate Nursery"
+				widths={[600, 900, 1200]}
+				sizes="(max-width: 900px) 100vw, 48vw"
+				quality={80}
+				class="planting-season__img"
+				loading="lazy"
+			/>
+		</figure>
+		<div class="planting-season__copy">
+			<p class="section__eyebrow">Spring &amp; fall planting</p>
+			<h2>Large trees, ready when the season is right</h2>
+			<p class="section__lead">
+				Our trees are grown in containers with a bark mix, so they are lighter than traditional
+				ball-and-burlap stock and easier to plant in the sizes homeowners want for a finished look.
+			</p>
+			<p>
+				In the Tri-Cities, <strong>spring and fall</strong> are the best windows to plant. Cooler
+				weather helps large trees establish before summer heat. We recommend waiting through the
+				hottest stretch of summer before planting again.
+			</p>
+			<div class="planting-season__actions">
+				<a class="btn btn--navy" href={SHOP_URL} rel="noopener noreferrer">Shop Trees</a>
+				<a class="btn btn--outline" href="/contact">Contact Us</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.planting-season__inner {
+		display: grid;
+		gap: var(--space-lg);
+		align-items: center;
+	}
+
+	@media (min-width: 900px) {
+		.planting-season__inner {
+			grid-template-columns: 1.05fr 1fr;
+			gap: var(--space-xl);
+		}
+	}
+
+	.planting-season__copy .section__lead {
+		margin-bottom: var(--space-sm);
+	}
+
+	.planting-season__copy p {
+		color: var(--text-muted);
+	}
+
+	.planting-season__copy strong {
+		color: var(--navy);
+		font-weight: 600;
+	}
+
+	.planting-season__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-top: var(--space-md);
+	}
+
+	.planting-season__figure {
+		margin: 0;
+		overflow: hidden;
+	}
+
+	.planting-season__img {
+		width: 100%;
+		height: auto;
+		aspect-ratio: 4 / 3;
+		object-fit: cover;
+	}
+</style>

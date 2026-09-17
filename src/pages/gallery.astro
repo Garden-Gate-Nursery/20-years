@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import Gallery from '../components/Gallery.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Reviews from '../components/Reviews.astro';
+---
+
+<Layout
+	title="Gallery | Garden Gate Nursery Tri-Cities"
+	description="Photos from Garden Gate Nursery in Pasco — trees, seasons, and life on the farm."
+>
+	<SiteHeader />
+	<main>
+		<Gallery
+			id="gallery-page"
+			headingLevel="h1"
+			eyebrow="Pasco farm"
+			heading="Gallery"
+			lead="Trees and life at Garden Gate: container rows, blossoms, fall color, and the people who grow them."
+		/>
+		
+		<Reviews />
+	</main>
+	<SiteFooter />
+</Layout>
