@@ -12,11 +12,14 @@ import LocalBusinessJsonLd from '../components/LocalBusinessJsonLd.astro';
 import { SITE_ORIGIN } from '../constants/site';
 import Reviews from '../components/Reviews.astro';
 import Sale from '../components/Sale.astro';
+import ogImage from '../assets/hero/autumn-tunnel.jpg';
 ---
 
 <Layout
 	title="Plant Nursery in Pasco & Tri-Cities WA | Garden Gate Nursery"
 	description="Looking for a plant nursery near you in the Tri-Cities? Garden Gate is a Pasco nursery growing shade and ornamental trees for local homeowners. Shop online or schedule a visit."
+	image={ogImage}
+	imageAlt="Rows of maple trees in fall color at Garden Gate Nursery in Pasco"
 >
 	<LocalBusinessJsonLd pageUrl={SITE_ORIGIN} />
 	<div class="home-top">

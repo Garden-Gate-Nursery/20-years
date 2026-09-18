@@ -3,11 +3,14 @@ import Layout from '../../layouts/Layout.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
 import { SITE_PHONE, SITE_PHONE_TEL } from '../../constants/site';
+import ogImage from '../../assets/growing/container-irrigation.jpg';
 ---
 
 <Layout
 	title="Message sent | Garden Gate Nursery"
 	description="Thank you for contacting Garden Gate Nursery."
+	image={ogImage}
+	imageAlt="Container-grown trees at Garden Gate Nursery in Pasco"
 >
 	<SiteHeader />
 	<main>

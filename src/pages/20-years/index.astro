@@ -9,11 +9,14 @@ import Gallery from '../../components/Gallery.astro';
 import Sale from '../../components/Sale.astro';
 import Reviews from '../../components/Reviews.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
+import ogImage from '../../assets/story/everett-sandra-blossoms.jpg';
 ---
 
 <Layout
 	title="Garden Gate Nursery: 20 Years"
 	description="Celebrating 20 years of Garden Gate Nursery: our story, people, and high-quality container trees for the Pacific Northwest."
+	image={ogImage}
+	imageAlt="Everett and Sandra among blossoming trees at Garden Gate Nursery"
 >
 	<Hero />
 	<SaleBanner />

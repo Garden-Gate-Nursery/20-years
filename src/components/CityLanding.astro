@@ -15,6 +15,7 @@ import {
 } from '../constants/site';
 import Reviews from './Reviews.astro';
 import Sale from './Sale.astro';
+import ogImage from '../assets/growing/purple-green-rows.jpg';
 
 interface Props {
 	city: CityPage;
@@ -25,7 +26,12 @@ const otherCities = getOtherCities(city.slug);
 const pageUrl = `${SITE_ORIGIN}/${city.slug}`;
 ---
 
-<Layout title={city.title} description={city.description}>
+<Layout
+	title={city.title}
+	description={city.description}
+	image={ogImage}
+	imageAlt={`Shade and ornamental trees at Garden Gate Nursery serving ${city.name}, Washington`}
+>
 	<LocalBusinessJsonLd pageUrl={pageUrl} primaryCity={city.name} />
 	<SiteHeader />
 	<main>

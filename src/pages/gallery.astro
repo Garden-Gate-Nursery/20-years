@@ -4,11 +4,14 @@ import SiteHeader from '../components/SiteHeader.astro';
 import Gallery from '../components/Gallery.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import Reviews from '../components/Reviews.astro';
+import ogImage from '../assets/gallery/nursery-fall.jpg';
 ---
 
 <Layout
 	title="Gallery | Garden Gate Nursery Tri-Cities"
 	description="Photos from Garden Gate Nursery in Pasco — trees, seasons, and life on the farm."
+	image={ogImage}
+	imageAlt="Wide view of container tree rows glowing with fall color at Garden Gate Nursery"
 >
 	<SiteHeader />
 	<main>
